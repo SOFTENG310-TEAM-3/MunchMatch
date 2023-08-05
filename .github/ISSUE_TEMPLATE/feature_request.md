@@ -7,13 +7,13 @@ assignees: ''
 
 ---
 
-** What is your feature? **
+**What is your feature?**
 A clear and concise description of what the feature is. 
 
-** Why is this feature needed? **
+**Why is this feature needed?**
 A clear and concise description of the reasoning behind this feature. 
 
-** Who is your feature for?  **
+**Who is your feature for? **
 A clear and concise description of who this feature is for. 
 
 **Additional context**
