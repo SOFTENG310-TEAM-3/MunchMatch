@@ -1,5 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
+h1 {
+  font: 4em "Luckiest Guy", sans-serif;
+  color: black;
+}
+
+h2 {
+  font: 3em "Luckiest Guy", sans-serif;
+  color: black;
+}
+
 .App {
+  min-height: 100vh;
   text-align: center;
+  background-color: #f2f2f2;
+  padding: 0.1%;
+}
+
+.App-header {
+  align-items: center;
+  justify-content: top;
+}
+
+.knife {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.fork {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.button {
+  background-color: #dbdeff;
+  border: 8px solid white;
+  border-radius: 25px;
+  margin: 0.5%;
+}
+
+.food {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.surpise {
+  width: 100%;
+  display: block;
 }
 
 .App-logo {
@@ -11,21 +62,6 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
