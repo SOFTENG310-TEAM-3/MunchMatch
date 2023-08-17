@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # sonarcloud only runs on the main repo, not forks
-    if: github.repository == 'SOFTENG310-TEAM-4/MunchMatch'
+    if: github.repository == 'SOFTENG310-TEAM-3/MunchMatch'
 
     steps:
       - name: 🛎️ Checkout
