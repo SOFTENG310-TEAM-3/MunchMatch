@@ -44,8 +44,7 @@ jobs:
           script: |
             const allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
                owner: context.repo.owner,
-               repo: context.repo.repo,
-               run_id: process.env.GITHUB_RUN_ID,
+               repo: context.repo.repo
             });
             const matchArtifact = allArtifacts.data.artifacts
               .find(artifact => artifact.name == "munchmatch-lcov-file");
