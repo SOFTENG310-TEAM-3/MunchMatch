@@ -14,6 +14,23 @@ jobs:
     if: github.repository == 'SOFTENG310-TEAM-3/MunchMatch'
 
     steps:
+      - name: 🔊 Upload code coverage to GitHub Artifacts (for SonarCloud)
+        uses: actions/upload-artifact@v2
+        with:
+          name: munchmatch-lcov-file
+          path: coverage/lcov.info
+
+      - name: 🔊 Save PR number (for SonarCloud)
+        if: github.event_name == 'pull_request'
+        run: echo ${{ github.event.number }} > PR_NUMBER.txt
+
+      - name: 🔊 Upload PR number to GitHub Artifacts (for SonarCloud)
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v3
+        with:
+          name: PR_NUMBER
+          path: PR_NUMBER.txt
+          
       - name: 🛎️ Checkout
         uses: actions/checkout@v2
         with:
@@ -31,7 +48,7 @@ jobs:
                run_id: context.payload.workflow_run.id,
             });
             const matchArtifact = allArtifacts.data.artifacts
-              .find(artifact => artifact.name == "kkdz-lcov-file");
+              .find(artifact => artifact.name == "munchmatch-lcov-file");
             const download = await github.rest.actions.downloadArtifact({
                owner: context.repo.owner,
                repo: context.repo.repo,
