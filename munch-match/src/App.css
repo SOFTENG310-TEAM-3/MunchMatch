@@ -10,6 +10,28 @@ h2 {
   color: black;
 }
 
+h3 {
+  font: 1.5em "Luckiest Guy", sans-serif;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h4 {
+  font: 1em Roboto, sans-serif;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+h5 {
+  font: 1em Roboto, sans-serif;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .App {
   min-height: 100vh;
   text-align: center;
@@ -23,15 +45,17 @@ h2 {
 }
 
 .knife {
-  position: absolute;
+  position: fixed;
   top: 0px;
   right: 0px;
+  z-index: 1;
 }
 
 .fork {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   left: 0px;
+  z-index: 1;
 }
 
 .button {
@@ -39,6 +63,51 @@ h2 {
   border: 8px solid white;
   border-radius: 25px;
   margin: 0.5%;
+  z-index: 2;
+}
+
+.results {
+  padding: 1.5%;
+  width: 33.33%;
+}
+
+.resultsRow {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.resultsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.actionContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+}
+
+.actionButton {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50px;
+  text-align: center;
+  flex: 1;
+}
+
+.infoContainer {
+  text-align: left;
+}
+
+.resultImage {
+  width: 40%;
+  height: 40%;
+  object-fit: contain;
 }
 
 .food {
@@ -49,13 +118,16 @@ h2 {
 }
 
 .surpise {
-  width: 100%;
   display: block;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.emptyStar {
+  color: gray;
 }
 
 @media (prefers-reduced-motion: no-preference) {
