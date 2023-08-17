@@ -14,8 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # sonarcloud only runs on the main repo, not forks
-    if: github.event.workflow_run.conclusion == 'success' && github.repository == 'se310-Team4/KKDZ'
-
+    if: github.repository == 'SOFTENG310-TEAM-4/MunchMatch'
     steps:
       - name: 🛎️ Checkout
         uses: actions/checkout@v2
