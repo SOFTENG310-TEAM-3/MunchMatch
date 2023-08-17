@@ -12,7 +12,7 @@ import sushi from "../images/sushi.png"
 
 
 //Creates the Button component
-class exampleButtons extends Component{
+class buttons extends Component{
   render(){
     return(
       //To export multiple components, surround it with a <div> tag
@@ -40,4 +40,4 @@ class exampleButtons extends Component{
 }
 
 //Exports the component
-export default exampleButtons;
+export default buttons;
