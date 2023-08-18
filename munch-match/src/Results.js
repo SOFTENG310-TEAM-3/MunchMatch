@@ -26,15 +26,54 @@ function getResults(queryType, location){
     return new Promise((resolve, reject) => {
         service.textSearch(request, (results, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
-            console.log(results[0]);
-            const extractedResults = results.slice(0, 6).map(place => ({
-              name: place.name,
-              rating: place.rating,
-              totalRatings: place.user_ratings_total,
-              formattedAddress: place.formatted_address,
-              price: place.price_level,
-            }));
-            resolve(extractedResults);
+            
+            var detailed_results = [];
+
+            async function fetchDetails(placeId) {
+              return new Promise((resolve, reject) => {
+                service.getDetails({ placeId }, (result, status) => {
+                  if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    resolve(result);
+                  } else {
+                    reject(new Error('Place details request failed'));
+                  }
+                });
+              });
+            }
+            
+            async function fetchAllDetails(results) {
+              try {
+                const detailPromises = results.map(result => fetchDetails(result.place_id));
+                const detailedResponses = await Promise.all(detailPromises);
+                detailed_results = detailedResponses;
+                console.log(detailed_results);
+                console.log(detailed_results.length);
+              } catch (error) {
+                console.error(error);
+              }
+            }
+            let extractedResults = [];
+            (async () => {
+                try {
+                  await fetchAllDetails(results);
+                  // Code to run after fetchAllDetails has completed
+                  console.log('All details fetched and processed.');
+                    extractedResults = detailed_results.slice(0, 6).map(place => ({
+                    name: place.name,
+                    rating: place.rating,
+                    totalRatings: place.user_ratings_total,
+                    formattedAddress: place.formatted_address,
+                    price: place.price_level,
+                  }));
+                  console.log(extractedResults);
+                  resolve(extractedResults);
+                } catch (error) {
+                    console.error("something wrong with fetch");
+                }
+              })();
+                
+            // console.log(extractedResults);
+            // resolve(extractedResults);
           } else {
             reject(new Error('Places API request failed'));
           }
