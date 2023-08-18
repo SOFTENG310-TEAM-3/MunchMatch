@@ -1,18 +1,20 @@
-name: Build
+# based on https://community.sonarsource.com/t/how-to-use-sonarcloud-with-a-forked-repository-on-github/7363/30
+# for some reason this is heinously complicated
+
+name: Sonarcloud
+
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
+
 jobs:
   sonarcloud:
     name: Sonarcloud
     runs-on: ubuntu-latest
 
     # sonarcloud only runs on the main repo, not forks
-    if: github.repository == 'SOFTENG310-TEAM-3/MunchMatch'
-
+    if: github.repository == 'SOFTENG310-TEAM-4/MunchMatch'
     steps:
       - name: 🔊 Upload code coverage to GitHub Artifacts (for SonarCloud)
         uses: actions/upload-artifact@v2
