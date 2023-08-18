@@ -20,7 +20,7 @@ class Results extends Component{
       }
     
       fetchResults = () => {
-        getResults(this.props.type, 10)
+        getResults(this.props.type)
           .then(results => {
             this.setState({ results }); 
           })
@@ -48,8 +48,8 @@ class Results extends Component{
                 
 
                     <div className="actionContainer">
-                    <button className="actionButton"><a href={results[0]?.maps}><h4>DIRECTIONS</h4></a></button>
-                    <button className="actionButton"><a href={results[0]?.website}><h4>WEBSITE</h4></a></button>
+                    <button className="actionButton"><a href={results[0]?.maps}  target="_blank"><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[0]?.website} target="_blank"><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
@@ -73,8 +73,8 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><a href={results[1]?.maps}><h4>DIRECTIONS</h4></a></button>
-                    <button className="actionButton"><a href={results[1]?.website}><h4>WEBSITE</h4></a></button>
+                    <button className="actionButton"><a href={results[1]?.maps} target="_blank"><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[1]?.website} target="_blank"><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
@@ -98,8 +98,8 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><a href={results[2]?.maps}><h4>DIRECTIONS</h4></a></button>
-                    <button className="actionButton"><a href={results[2]?.website}><h4>WEBSITE</h4></a></button>
+                    <button className="actionButton"><a href={results[2]?.maps} target="_blank"><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[2]?.website} target="_blank"><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
@@ -125,8 +125,8 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><a href={results[3]?.maps}><h4>DIRECTIONS</h4></a></button>
-                    <button className="actionButton"><a href={results[3]?.website}><h4>WEBSITE</h4></a></button>
+                    <button className="actionButton"><a href={results[3]?.maps} target="_blank"><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[3]?.website} target="_blank"><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
@@ -150,8 +150,8 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><a href={results[4]?.maps}><h4>DIRECTIONS</h4></a></button>
-                    <button className="actionButton"><a href={results[4]?.website}><h4>WEBSITE</h4></a></button>
+                    <button className="actionButton"><a href={results[4]?.maps} target="_blank"><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[4]?.website} target="_blank"><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
@@ -175,8 +175,8 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><a href={results[5]?.maps}><h4>DIRECTIONS</h4></a></button>
-                    <button className="actionButton"><a href={results[5]?.website}><h4>WEBSITE</h4></a></button>
+                    <button className="actionButton"><a href={results[5]?.maps} target="_blank"><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[5]?.website} target="_blank"><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
