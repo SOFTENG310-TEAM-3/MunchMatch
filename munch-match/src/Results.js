@@ -58,12 +58,19 @@ function getResults(queryType, location){
                   await fetchAllDetails(results);
                   // Code to run after fetchAllDetails has completed
                   console.log('All details fetched and processed.');
+                    const today = new Date();
+                    const dayOfWeek = today.getDay();
                     extractedResults = detailed_results.slice(0, 6).map(place => ({
                     name: place.name,
                     rating: place.rating,
                     totalRatings: place.user_ratings_total,
                     formattedAddress: place.formatted_address,
+                    formattedPhone: place.formatted_phone_number,
                     price: place.price_level,
+                    website: place.website,
+                    maps: place.url,
+                    image: place.photos[0].getUrl,
+                    openingHours: place.opening_hours.weekday_text[dayOfWeek],
                   }));
                   console.log(extractedResults);
                   resolve(extractedResults);
@@ -72,8 +79,6 @@ function getResults(queryType, location){
                 }
               })();
                 
-            // console.log(extractedResults);
-            // resolve(extractedResults);
           } else {
             reject(new Error('Places API request failed'));
           }

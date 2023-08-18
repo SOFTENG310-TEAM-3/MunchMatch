@@ -32,7 +32,7 @@ class Results extends Component{
     render(){
         console.log(this.selectedType)
         const { results } = this.state;
-        console.log(results[0]);
+        console.log(results[2]);
 
         return(
         //To export multiple components, surround it with a <div> tag
@@ -48,17 +48,17 @@ class Results extends Component{
                 
 
                     <div className="actionContainer">
-                    <button className="actionButton"><h4>DIRECTIONS</h4></button>
-                    <button className="actionButton"><h4>WEBSITE</h4></button>
+                    <button className="actionButton"><a href={results[0]?.maps}><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[0]?.website}><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
                     <div className="infoContainer">
                     <h5 className="rating"> <Rating value={results[0]?.rating} total={results[0]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
-                    <h5>Hours: </h5>
+                    <h5>Hours: {results[0]?.openingHours}</h5>
                     <h5>Address: {results[0]?.formattedAddress}</h5>
-                    <h5>Phone: </h5>
+                    <h5>Phone: {results[0]?.formattedPhone}</h5>
                     </div>
                     
                     <img className="resultImage" src={dessert} alt="dessert"></img>
@@ -73,17 +73,17 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><h4>DIRECTIONS</h4></button>
-                    <button className="actionButton"><h4>WEBSITE</h4></button>
+                    <button className="actionButton"><a href={results[1]?.maps}><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[1]?.website}><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
                     <div className="infoContainer">
                     <h5 className="rating"> <Rating value={results[1]?.rating} total={results[1]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
-                    <h5>Hours: </h5>
+                    <h5>Hours: {results[1]?.openingHours}</h5>
                     <h5>Address: {results[1]?.formattedAddress}</h5>
-                    <h5>Phone: </h5>
+                    <h5>Phone: {results[1]?.formattedPhone}</h5>
                     </div>
                     
                     <img className="resultImage" src={dessert} alt="dessert"></img>
@@ -98,17 +98,17 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><h4>DIRECTIONS</h4></button>
-                    <button className="actionButton"><h4>WEBSITE</h4></button>
+                    <button className="actionButton"><a href={results[2]?.maps}><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[2]?.website}><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
                     <div className="infoContainer">
                     <h5 className="rating"> <Rating value={results[2]?.rating} total={results[2]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
-                    <h5>Hours: </h5>
+                    <h5>Hours: {results[2]?.openingHours}</h5>
                     <h5>Address: {results[2]?.formattedAddress}</h5>
-                    <h5>Phone: </h5>
+                    <h5>Phone: {results[2]?.formattedPhone}</h5>
                     </div>
                     
                     <img className="resultImage" src={dessert} alt="dessert"></img>
@@ -125,17 +125,17 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><h4>DIRECTIONS</h4></button>
-                    <button className="actionButton"><h4>WEBSITE</h4></button>
+                    <button className="actionButton"><a href={results[3]?.maps}><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[3]?.website}><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
                     <div className="infoContainer">
                     <h5 className="rating"> <Rating value={results[3]?.rating} total={results[3]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
-                    <h5>Hours: </h5>
+                    <h5>Hours: {results[3]?.openingHours}</h5>
                     <h5>Address: {results[3]?.formattedAddress}</h5>
-                    <h5>Phone: </h5>
+                    <h5>Phone: {results[3]?.formattedPhone}</h5>
                     </div>
                     
                     <img className="resultImage" src={dessert} alt="dessert"></img>
@@ -150,17 +150,17 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><h4>DIRECTIONS</h4></button>
-                    <button className="actionButton"><h4>WEBSITE</h4></button>
+                    <button className="actionButton"><a href={results[4]?.maps}><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[4]?.website}><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
                     <div className="infoContainer">
                     <h5 className="rating"> <Rating value={results[4]?.rating} total={results[4]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
-                    <h5>Hours: </h5>
+                    <h5>Hours: {results[4]?.openingHours}</h5>
                     <h5>Address: {results[4]?.formattedAddress}</h5>
-                    <h5>Phone: </h5>
+                    <h5>Phone: {results[4]?.formattedPhone}</h5>
                     </div>
                     
                     <img className="resultImage" src={dessert} alt="dessert"></img>
@@ -175,17 +175,17 @@ class Results extends Component{
                     )}
 
                     <div className="actionContainer">
-                    <button className="actionButton"><h4>DIRECTIONS</h4></button>
-                    <button className="actionButton"><h4>WEBSITE</h4></button>
+                    <button className="actionButton"><a href={results[5]?.maps}><h4>DIRECTIONS</h4></a></button>
+                    <button className="actionButton"><a href={results[5]?.website}><h4>WEBSITE</h4></a></button>
                     <button className="actionButton"><h4>CALL</h4></button>
                     </div>
 
                     <div className="infoContainer">
                     <h5 className="rating"> <Rating value={results[5]?.rating} total={results[5]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
-                    <h5>Hours: </h5>
+                    <h5>Hours: {results[5]?.openingHours}</h5>
                     <h5>Address: {results[5]?.formattedAddress}</h5>
-                    <h5>Phone: </h5>
+                    <h5>Phone: {results[5]?.formattedPhone}</h5>
                     </div>
                     
                     <img className="resultImage" src={dessert} alt="dessert"></img>
