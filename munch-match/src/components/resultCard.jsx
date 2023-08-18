@@ -18,7 +18,6 @@ const ResultCard = ({ result }) => {
             <div className="actionContainer">
             <button className="actionButton"><a href={result?.maps}  target="_blank"><h4>DIRECTIONS</h4></a></button>
             <button className="actionButton"><a href={result?.website} target="_blank"><h4>WEBSITE</h4></a></button>
-            <button className="actionButton"><h4>CALL</h4></button>
             </div>
 
             <div className="infoContainer">

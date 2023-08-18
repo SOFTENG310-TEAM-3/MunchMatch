@@ -61,21 +61,20 @@ function getResults(queryType){
                     const today = new Date();
                     const dayOfWeek = today.getDay();
                     extractedResults = detailed_results.slice(0, 6).map(place => ({
-                    name: place.name,
-                    rating: place.rating,
-                    totalRatings: place.user_ratings_total,
-                    formattedAddress: place.formatted_address,
-                    formattedPhone: place.formatted_phone_number,
-                    price: place.price_level,
-                    website: place.website,
-                    maps: place.url,
-                    image: place.photos[0].getUrl,
-                    openingHours: place.opening_hours.weekday_text[dayOfWeek],
+                    name: place?.name,
+                    rating: place?.rating,
+                    totalRatings: place?.user_ratings_total,
+                    formattedAddress: place?.formatted_address,
+                    formattedPhone: place?.formatted_phone_number,
+                    price: place?.price_level,
+                    website: place?.website,
+                    maps: place?.url,
+                    openingHours: place.opening_hours?.weekday_text[dayOfWeek],
                   }));
                   console.log(extractedResults);
                   resolve(extractedResults);
                 } catch (error) {
-                    console.error("something wrong with fetch");
+                    console.error("something wrong with fetch" + error);
                 }
               })();
                 
