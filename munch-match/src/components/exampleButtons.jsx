@@ -10,27 +10,30 @@ import fruit from "../images/fruit.png"
 import pizza from "../images/pizza.png"
 import sushi from "../images/sushi.png"
 
-
 //Creates the Button component
-class exampleButtons extends Component{
+class ExampleButtons extends Component{
+  onButtonClick = (type) => {
+    this.props.onButtonClick(type);
+  }
+
   render(){
     return(
       //To export multiple components, surround it with a <div> tag
       <div>
         <div>
-          <button class="button"><img class="food" src={dessert} alt="dessert"></img></button>
-          <button class="button"><img class="food" src={pizza} alt="pizza"></img></button>
-          <button class="button"><img class="food" src={chicken} alt="chicken"></img></button>
-          <button class="button"><img class="food" src={bakery} alt="bakery"></img></button>
+          <button className="button" onClick={() => this.onButtonClick("dessert")}><img className="food" src={dessert} alt="dessert"></img></button>
+          <button className="button" onClick={() => this.onButtonClick("pizza")}><img className="food" src={pizza} alt="pizza"></img></button>
+          <button className="button" onClick={() => this.onButtonClick("chicker")}><img className="food" src={chicken} alt="chicken"></img></button>
+          <button className="button" onClick={() => this.onButtonClick("bakery")}><img className="food" src={bakery} alt="bakery"></img></button>
         </div>
         <div>
-          <button class="button"><img class="food" src={cafe} alt="cafe"></img></button>
-          <button class="button"><img class="food" src={burger} alt="burger"></img></button>
-          <button class="button"><img class="food" src={sushi} alt="sushi"></img></button>
-          <button class="button"><img class="food" src={fruit} alt="fruit"></img></button>
+          <button className="button" onClick={() => this.onButtonClick("cafe")}><img className="food" src={cafe} alt="cafe"></img></button>
+          <button className="button" onClick={() => this.onButtonClick("burger")}><img className="food" src={burger} alt="burger"></img></button>
+          <button className="button" onClick={() => this.onButtonClick("sushi")}><img className="food" src={sushi} alt="sushi"></img></button>
+          <button className="button" onClick={() => this.onButtonClick("fruit")}><img className="food" src={fruit} alt="fruit"></img></button>
         </div>
         <div>
-          <button class="button" style={{width: "55%"}}><h2>Surprise Me!</h2></button>
+          <button className="button" style={{width: "55%"}}><h2>Surprise Me!</h2></button>
         </div>
       </div>
       
@@ -40,4 +43,4 @@ class exampleButtons extends Component{
 }
 
 //Exports the component
-export default exampleButtons;
+export default ExampleButtons;
