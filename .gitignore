@@ -1,1 +1,2 @@
-munch-match/src/.env
+.env
+/node_modules/

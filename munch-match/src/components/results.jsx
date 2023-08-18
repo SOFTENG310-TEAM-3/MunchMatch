@@ -3,26 +3,48 @@ import { Component } from "react";
 import "../App.css"
 import Rating from "./rating";
 import dessert from "../images/dessert.png"
-
+import { getResults } from "../Results.js"
 
 //Creates the Button component
 class Results extends Component{
-    onBackClick = () => {
-    this.props.onBackClick();
-    }
-
+    state = {
+        results: [],
+      };
+    
+      onBackClick = () => {
+        this.props.onBackClick();
+      };
+    
+      componentDidMount() {
+        this.fetchResults(); 
+      }
+    
+      fetchResults = () => {
+        getResults(this.props.type, 10)
+          .then(results => {
+            this.setState({ results }); 
+          })
+          .catch(error => {
+            console.error('Error fetching results:', error);
+          });
+      }
 
     render(){
+        console.log(this.selectedType)
+        const { results } = this.state;
+
         return(
         //To export multiple components, surround it with a <div> tag
         <div>
             <div className="resultsRow">
                 <div className="button results">
 
-                    <div className="resultsHeader">
-                    <h3>Restaurant Name</h3>
-                    <h5>10 KM | $$ </h5>
-                    </div>
+                    {results.length > 0 && (
+                        <div className="resultsHeader">
+                            <h3>{results[0]?.name}</h3>
+                            <h5>10 KM | $$</h5>
+                        </div>
+                    )}
 
                     <div className="actionContainer">
                     <button className="actionButton"><h4>DIRECTIONS</h4></button>
@@ -42,10 +64,12 @@ class Results extends Component{
                 </div>
                 <div className="button results">
 
-                    <div className="resultsHeader">
-                    <h3>Restaurant Name</h3>
-                    <h5>10 KM | $$ </h5>
-                    </div>
+                    {results.length > 0 && (
+                        <div className="resultsHeader">
+                            <h3>{results[1]?.name}</h3>
+                            <h5>10 KM | $$</h5>
+                        </div>
+                    )}
 
                     <div className="actionContainer">
                     <button className="actionButton"><h4>DIRECTIONS</h4></button>
@@ -65,10 +89,12 @@ class Results extends Component{
                 </div>
                 <div className="button results">
 
-                    <div className="resultsHeader">
-                    <h3>Restaurant Name</h3>
-                    <h5>10 KM | $$ </h5>
-                    </div>
+                    {results.length > 0 && (
+                        <div className="resultsHeader">
+                            <h3>{results[2]?.name}</h3>
+                            <h5>10 KM | $$</h5>
+                        </div>
+                    )}
 
                     <div className="actionContainer">
                     <button className="actionButton"><h4>DIRECTIONS</h4></button>
@@ -90,10 +116,12 @@ class Results extends Component{
             <div className="resultsRow">
                 <div className="button results">
 
-                    <div className="resultsHeader">
-                    <h3>Restaurant Name</h3>
-                    <h5>10 KM | $$ </h5>
-                    </div>
+                    {results.length > 0 && (
+                        <div className="resultsHeader">
+                            <h3>{results[3]?.name}</h3>
+                            <h5>10 KM | $$</h5>
+                        </div>
+                    )}
 
                     <div className="actionContainer">
                     <button className="actionButton"><h4>DIRECTIONS</h4></button>
@@ -113,10 +141,12 @@ class Results extends Component{
                 </div>
                 <div className="button results">
 
-                    <div className="resultsHeader">
-                    <h3>Restaurant Name</h3>
-                    <h5>10 KM | $$ </h5>
-                    </div>
+                    {results.length > 0 && (
+                        <div className="resultsHeader">
+                            <h3>{results[4]?.name}</h3>
+                            <h5>10 KM | $$</h5>
+                        </div>
+                    )}
 
                     <div className="actionContainer">
                     <button className="actionButton"><h4>DIRECTIONS</h4></button>
@@ -136,10 +166,12 @@ class Results extends Component{
                 </div>
                 <div className="button results">
 
-                    <div className="resultsHeader">
-                    <h3>Restaurant Name</h3>
-                    <h5>10 KM | $$ </h5>
-                    </div>
+                    {results.length > 0 && (
+                        <div className="resultsHeader">
+                            <h3>{results[5]?.name}</h3>
+                            <h5>10 KM | $$</h5>
+                        </div>
+                    )}
 
                     <div className="actionContainer">
                     <button className="actionButton"><h4>DIRECTIONS</h4></button>
