@@ -1,12 +1,10 @@
-
+import "./App.css"
 //imports the button component
 
 import ExampleButton from "./components/exampleButtons.jsx"
-import ResultsPage from './Results.js';
+import fork from "./images/fork.png"
+import knife from "./images/knife.png"
 
-const googleAPIScript = process.env.REACT_APP_GOOGLE_API_KEY
-
-window.REACT_APP_GOOGLE_API_KEY = googleAPIScript
 
 //The example button component is used in the code below
 function App() {
@@ -15,20 +13,11 @@ function App() {
     
     <div className="App">
       <header className="App-header">
-          <ExampleButton />
-          
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-  
-          <ResultsPage/>
-        
+        <h1>MunchMatch</h1>
       </header>
+      <img class="knife" src={knife} alt="knife"></img>
+      <ExampleButton/>
+      <img class="fork" src={fork} alt="fork"></img>
     </div>
   );
 }

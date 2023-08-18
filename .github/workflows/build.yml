@@ -7,14 +7,105 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   sonarcloud:
-    name: SonarCloud
+    name: Sonarcloud
     runs-on: ubuntu-latest
+
+    # sonarcloud only runs on the main repo, not forks
+    if: github.repository == 'SOFTENG310-TEAM-3/MunchMatch'
+
     steps:
-      - uses: actions/checkout@v3
+      - name: 🔊 Upload code coverage to GitHub Artifacts (for SonarCloud)
+        uses: actions/upload-artifact@v2
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
+          name: munchmatch-lcov-file
+          path: coverage/lcov.info
+
+      - name: 🔊 Save PR number (for SonarCloud)
+        if: github.event_name == 'pull_request'
+        run: echo ${{ github.event.number }} > PR_NUMBER.txt
+
+      - name: 🔊 Upload PR number to GitHub Artifacts (for SonarCloud)
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v3
+        with:
+          name: PR_NUMBER
+          path: PR_NUMBER.txt
+          
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.workflow_run.head_repository.full_name }}
+          ref: ${{ github.event.workflow_run.head_branch }}
+          fetch-depth: 0
+
+      - name: 📶 Download code coverage
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo
+            });
+            const matchArtifact = allArtifacts.data.artifacts
+              .find(artifact => artifact.name == "munchmatch-lcov-file");
+            const download = await github.rest.actions.downloadArtifact({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               artifact_id: matchArtifact.id,
+               archive_format: 'zip',
+            });
+            const fs = require('fs');
+            fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/code-coverage.zip`, Buffer.from(download.data));
+
+      - name: 📂 Unzip code coverage
+        run: unzip code-coverage.zip -d coverage
+
+      - name: 📶 Download PR number
+        if: github.event.workflow_run.event == 'pull_request'
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.name }}
+          run_id: ${{ github.event.workflow_run.id }}
+          name: PR_NUMBER
+
+      - name: 📶 Read PR number
+        if: github.event.workflow_run.event == 'pull_request'
+        id: pr_number
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./PR_NUMBER.txt
+
+      - name: 📶 Download PR info
+        if: github.event.workflow_run.event == 'pull_request'
+        uses: octokit/request-action@v2.x
+        id: get_pr_data
+        with:
+          route: GET /repos/{full_name}/pulls/{number}
+          number: ${{ steps.pr_number.outputs.content }}
+          full_name: ${{ github.event.repository.full_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔊 SonarCloud Scan (for PRs)
+        if: github.event.workflow_run.event == 'pull_request'
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.scm.revision=${{ github.event.workflow_run.head_sha }}
+            -Dsonar.pullrequest.key=${{ fromJson(steps.get_pr_data.outputs.data).number }}
+            -Dsonar.pullrequest.branch=${{ fromJson(steps.get_pr_data.outputs.data).head.ref }}
+            -Dsonar.pullrequest.base=${{ fromJson(steps.get_pr_data.outputs.data).base.ref }}
+
+      - name: 🔊 SonarCloud Scan (for branches)
+        if: github.event.workflow_run.event != 'pull_request'
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.scm.revision=${{ github.event.workflow_run.head_sha }}
+            -Dsonar.pullrequest.branch.name=${{ github.event.workflow_run.head_branch }}
