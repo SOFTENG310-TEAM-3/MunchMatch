@@ -32,6 +32,7 @@ class Results extends Component{
     render(){
         console.log(this.selectedType)
         const { results } = this.state;
+        console.log(results[0]);
 
         return(
         //To export multiple components, surround it with a <div> tag
@@ -39,12 +40,12 @@ class Results extends Component{
             <div className="resultsRow">
                 <div className="button results">
 
-                    {results.length > 0 && (
-                        <div className="resultsHeader">
-                            <h3>{results[0]?.name}</h3>
-                            <h5>10 KM | $$</h5>
-                        </div>
-                    )}
+                
+                    <div className="resultsHeader">
+                        <h3>{results[0]?.name}</h3>
+                        <h5>10 KM | {Array(results[0]?.price).fill('$').join('')}</h5>
+                    </div>
+                
 
                     <div className="actionContainer">
                     <button className="actionButton"><h4>DIRECTIONS</h4></button>
@@ -53,10 +54,10 @@ class Results extends Component{
                     </div>
 
                     <div className="infoContainer">
-                    <h5 className="rating"> <Rating value={3.5} /> </h5>
+                    <h5 className="rating"> <Rating value={results[0]?.rating} total={results[0]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
                     <h5>Hours: </h5>
-                    <h5>Address: </h5>
+                    <h5>Address: {results[0]?.formattedAddress}</h5>
                     <h5>Phone: </h5>
                     </div>
                     
@@ -67,7 +68,7 @@ class Results extends Component{
                     {results.length > 0 && (
                         <div className="resultsHeader">
                             <h3>{results[1]?.name}</h3>
-                            <h5>10 KM | $$</h5>
+                            <h5>10 KM | {Array(results[1]?.price).fill('$').join('')}</h5>
                         </div>
                     )}
 
@@ -78,10 +79,10 @@ class Results extends Component{
                     </div>
 
                     <div className="infoContainer">
-                    <h5 className="rating"> <Rating value={3.5} /> </h5>
+                    <h5 className="rating"> <Rating value={results[1]?.rating} total={results[1]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
                     <h5>Hours: </h5>
-                    <h5>Address: </h5>
+                    <h5>Address: {results[1]?.formattedAddress}</h5>
                     <h5>Phone: </h5>
                     </div>
                     
@@ -92,7 +93,7 @@ class Results extends Component{
                     {results.length > 0 && (
                         <div className="resultsHeader">
                             <h3>{results[2]?.name}</h3>
-                            <h5>10 KM | $$</h5>
+                            <h5>10 KM | {Array(results[2]?.price).fill('$').join('')}</h5>
                         </div>
                     )}
 
@@ -103,10 +104,10 @@ class Results extends Component{
                     </div>
 
                     <div className="infoContainer">
-                    <h5 className="rating"> <Rating value={3.5} /> </h5>
+                    <h5 className="rating"> <Rating value={results[2]?.rating} total={results[2]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
                     <h5>Hours: </h5>
-                    <h5>Address: </h5>
+                    <h5>Address: {results[2]?.formattedAddress}</h5>
                     <h5>Phone: </h5>
                     </div>
                     
@@ -119,7 +120,7 @@ class Results extends Component{
                     {results.length > 0 && (
                         <div className="resultsHeader">
                             <h3>{results[3]?.name}</h3>
-                            <h5>10 KM | $$</h5>
+                            <h5>10 KM | {Array(results[3]?.price).fill('$').join('')}</h5>
                         </div>
                     )}
 
@@ -130,10 +131,10 @@ class Results extends Component{
                     </div>
 
                     <div className="infoContainer">
-                    <h5 className="rating"> <Rating value={3.5} /> </h5>
+                    <h5 className="rating"> <Rating value={results[3]?.rating} total={results[3]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
                     <h5>Hours: </h5>
-                    <h5>Address: </h5>
+                    <h5>Address: {results[3]?.formattedAddress}</h5>
                     <h5>Phone: </h5>
                     </div>
                     
@@ -144,7 +145,7 @@ class Results extends Component{
                     {results.length > 0 && (
                         <div className="resultsHeader">
                             <h3>{results[4]?.name}</h3>
-                            <h5>10 KM | $$</h5>
+                            <h5>10 KM | {Array(results[4]?.price).fill('$').join('')}</h5>
                         </div>
                     )}
 
@@ -155,10 +156,10 @@ class Results extends Component{
                     </div>
 
                     <div className="infoContainer">
-                    <h5 className="rating"> <Rating value={3.5} /> </h5>
+                    <h5 className="rating"> <Rating value={results[4]?.rating} total={results[4]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
                     <h5>Hours: </h5>
-                    <h5>Address: </h5>
+                    <h5>Address: {results[4]?.formattedAddress}</h5>
                     <h5>Phone: </h5>
                     </div>
                     
@@ -169,7 +170,7 @@ class Results extends Component{
                     {results.length > 0 && (
                         <div className="resultsHeader">
                             <h3>{results[5]?.name}</h3>
-                            <h5>10 KM | $$</h5>
+                            <h5>10 KM | {Array(results[5]?.price).fill('$').join('')}</h5>
                         </div>
                     )}
 
@@ -180,10 +181,10 @@ class Results extends Component{
                     </div>
 
                     <div className="infoContainer">
-                    <h5 className="rating"> <Rating value={3.5} /> </h5>
+                    <h5 className="rating"> <Rating value={results[5]?.rating} total={results[5]?.totalRatings}/> </h5>
                     <h4>Services: </h4>
                     <h5>Hours: </h5>
-                    <h5>Address: </h5>
+                    <h5>Address: {results[5]?.formattedAddress}</h5>
                     <h5>Phone: </h5>
                     </div>
                     

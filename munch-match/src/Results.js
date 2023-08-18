@@ -21,16 +21,19 @@ function getResults(queryType, location){
     }
     //Creates the variable on where it will store the output of the requested data should be
     let service = new google.maps.places.PlacesService(document.createElement('div'));
-
+    
     //Gets the data and retrieves the data to the callback function 
     return new Promise((resolve, reject) => {
         service.textSearch(request, (results, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
+            console.log(results[0]);
             const extractedResults = results.slice(0, 6).map(place => ({
               name: place.name,
+              rating: place.rating,
+              totalRatings: place.user_ratings_total,
               formattedAddress: place.formatted_address,
+              price: place.price_level,
             }));
-    
             resolve(extractedResults);
           } else {
             reject(new Error('Places API request failed'));
