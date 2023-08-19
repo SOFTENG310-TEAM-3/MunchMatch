@@ -4,10 +4,10 @@ const google = window.google
 //Using a local variable in a created .env file to store the key. Either contact us for the key or create one with google making sure that you have access to the Places API
 const key = process.env.REACT_APP_GOOGLE_API_KEY
 
-function getResults(queryType){
+function getResults(queryType, lat, lng){
     //Stores the user's location as google.maps.LatLng (Latitude and Longitude)
     //Change location variables to props variables
-    const userLocation = new google.maps.LatLng(-36.8594224, 174.5413159)
+    const userLocation = new google.maps.LatLng(lat, lng)
 
     //The parameters for requesting nearby locations for places to eat
     let request = {
