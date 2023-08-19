@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
 
-const Rating = ({value}) => {
+const Rating = ({value, total}) => {
     const fullStars = Math.floor(value);
     const hasHalf = value - fullStars !== 0;
 
@@ -21,7 +21,7 @@ const Rating = ({value}) => {
     return (
         <div className="rating">
             {stars}
-        <span className="rating-value"> {value} (x Reviews) </span>
+        <span className="rating-value"> {value} ({total} Reviews) </span>
         </div>
     );
 }
