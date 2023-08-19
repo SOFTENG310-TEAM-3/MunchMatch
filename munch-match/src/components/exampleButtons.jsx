@@ -13,7 +13,14 @@ import sushi from "../images/sushi.png"
 //Creates the Button component
 class ExampleButtons extends Component{
   onButtonClick = (type) => {
-    this.props.onButtonClick(type);
+      //generate a random type from the food choice array
+      if (type == "supriseme"){
+          const foodChoices = ["cafe", "burger", "sushi", "fruit", "dessert", "pizza", "chicken", "bakery"];
+          const randomNumber = Math.floor(Math.random() * 8);
+          type = foodChoices[randomNumber];
+      }
+
+      this.props.onButtonClick(type);
   }
 
   render(){
@@ -33,7 +40,7 @@ class ExampleButtons extends Component{
           <button className="button" onClick={() => this.onButtonClick("bakery")}><img className="food" src={bakery} alt="bakery"></img></button>
         </div>
         <div>
-          <button className="button" style={{width: "55%"}}><h2>Surprise Me!</h2></button>
+          <button className="button" onClick={() => this.onButtonClick("supriseme")} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
         </div>
       </div>
       
