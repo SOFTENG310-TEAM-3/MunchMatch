@@ -17,11 +17,25 @@ class Results extends Component{
       };
     
       componentDidMount() {
-        this.fetchResults(); 
+        this.fetchUserLocation().then((position) => {
+          this.fetchResults(position.coords.latitude, position.coords.longitude);
+        }).catch((err) => {
+          console.log("Error in retrieving user location")
+        }); 
+      }
+
+      fetchUserLocation() {
+        return new Promise((resolve, reject) => {
+          if (!navigator.geolocation) {
+            reject(new Error("Location is not supported"))
+          } else {
+            navigator.geolocation.getCurrentPosition(resolve, reject)
+          }
+        });
       }
     
-      fetchResults = () => {
-        getResults(this.props.type)
+      fetchResults = (latitude, longtidude) => {
+        getResults(this.props.type, latitude, longtidude)
           .then(results => {
             this.setState({ results }); 
           })
