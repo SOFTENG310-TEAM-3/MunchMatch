@@ -6,6 +6,7 @@ import Results from "./components/results"
 import fork from "./images/fork.png"
 import knife from "./images/knife.png"
 import React, {useState} from "react";
+import {SkeletonTheme} from "react-loading-skeleton";
 
 
 //The example button component is used in the code below
@@ -28,12 +29,14 @@ function App() {
   return (
     
     <div className="App">
+        <SkeletonTheme baseColor="#f2f2f2" highlightColor="#444" >
       <header className="App-header">
         <h1>MunchMatch</h1>
       </header>
       <img className="knife" src={knife} alt="knife"></img>
       {showResults ? (<Results type={selectedType} onBackClick={onBackClick}/>) : (<ExampleButton onButtonClick={onButtonClick}/>)}
       <img className="fork" src={fork} alt="fork"></img>
+        </SkeletonTheme>
     </div>
   );
 }
