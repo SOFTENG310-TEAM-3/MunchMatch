@@ -74,7 +74,7 @@ class Results extends Component{
         return(
         //To export multiple components, surround it with a <div> tag
         <div>
-          <div id="map" style={{ width: '100%', height: '400px' }}></div>
+          <div id="map" className="map"></div>
             <div className="resultsRow">
                 <ResultCard result={results[0]}/>
                 <ResultCard result={results[1]}/>
