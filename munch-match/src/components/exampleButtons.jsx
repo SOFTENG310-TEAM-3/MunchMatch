@@ -13,26 +13,11 @@ import sushi from "../images/sushi.png"
 //Creates the Button component
 class ExampleButtons extends Component{
   onButtonClick = (type) => {
-    //generate a random type
+      //generate a random type from the food choice array
       if (type == "supriseme"){
-          const randomNumber = Math.floor(Math.random() * 8) + 1;
-          if (randomNumber === 1){
-              type = "cafe";
-          }else if (randomNumber === 2){
-              type = "burger";
-          }else if (randomNumber === 3){
-              type = "sushi";
-          }else if (randomNumber === 4){
-              type = "fruit";
-          }else if (randomNumber === 5){
-              type = "dessert";
-          }else if (randomNumber === 6){
-              type = "pizza";
-          }else if (randomNumber === 7){
-              type = "chicken";
-          }else if (randomNumber === 8){
-              type = "bakery";
-          }
+          const foodChoices = ["cafe", "burger", "sushi", "fruit", "dessert", "pizza", "chicken", "bakery"];
+          const randomNumber = Math.floor(Math.random() * 8);
+          type = foodChoices[randomNumber];
       }
 
       this.props.onButtonClick(type);
