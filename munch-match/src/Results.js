@@ -1,8 +1,6 @@
 import React from 'react';
-
+//Creates the google map variable
 const google = window.google
-//Using a local variable in a created .env file to store the key. Either contact us for the key or create one with google making sure that you have access to the Places API
-const key = process.env.REACT_APP_GOOGLE_API_KEY
 
 function getResults(queryType){
     //Stores the user's location as google.maps.LatLng (Latitude and Longitude)
@@ -14,7 +12,7 @@ function getResults(queryType){
         //Change query to button input
         query: queryType,
         location: userLocation,
-        //Distance from userLocation which is in metrers
+        //Distance from userLocation which is in meters
         radius: 5000,
         openNow: true,
         type:"restaurant",
@@ -27,7 +25,7 @@ function getResults(queryType){
         service.textSearch(request, (results, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             
-            var detailed_results = [];
+            let detailed_results = [];
 
             async function fetchDetails(placeId) {
               return new Promise((resolve, reject) => {
@@ -70,6 +68,7 @@ function getResults(queryType){
                     website: place?.website,
                     maps: place?.url,
                     openingHours: place.opening_hours?.weekday_text[dayOfWeek],
+                    picture: place?.photos[0],
                   }));
                   console.log(extractedResults);
                   resolve(extractedResults);
