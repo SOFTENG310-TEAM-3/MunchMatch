@@ -34,6 +34,7 @@ class Results extends Component{
         });
       }
     
+
       fetchResults = (latitude, longitude) => {
         getResults(this.props.type, latitude, longitude)
           .then(results => {
