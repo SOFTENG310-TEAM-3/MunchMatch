@@ -70,6 +70,8 @@ function getResults(queryType, lat, lng){
                             website: place?.website,
                             maps: place?.url,
                             openingHours: place.opening_hours?.weekday_text[dayOfWeek],
+                            latitude: place?.geometry?.location.lat(),
+                            longitude: place?.geometry?.location.lng(),
                         }));
                         console.log(extractedResults);
                         resolve(extractedResults);

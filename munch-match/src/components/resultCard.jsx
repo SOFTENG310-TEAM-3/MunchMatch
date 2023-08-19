@@ -5,11 +5,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const ResultCard = ({ result }) => {
 
-
     return (
-        <div className="button results">
-
-                            
+        <div className="button results">             
             <div className="resultsHeader">
                 <h3>{result?.name || <Skeleton/>}</h3>
                 <h5>10 KM | {Array(result?.price|| <Skeleton/>).fill('$').join('')}</h5>

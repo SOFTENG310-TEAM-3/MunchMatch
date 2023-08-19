@@ -34,14 +34,36 @@ class Results extends Component{
         });
       }
     
-      fetchResults = (latitude, longtidude) => {
-        getResults(this.props.type, latitude, longtidude)
+      fetchResults = (latitude, longitude) => {
+        getResults(this.props.type, latitude, longitude)
           .then(results => {
-            this.setState({ results }); 
+            this.setState({ results });
+            const locations = results.map(result => {
+              return {
+                latitude: result.latitude, 
+                longitude: result.longitude
+              };
+            });
+            this.initializeMap(locations); 
           })
           .catch(error => {
             console.error('Error fetching results:', error);
           });
+      }
+
+      initializeMap = (foodLocations) => {
+        const center = {lat: foodLocations[0].latitude, lng: foodLocations[0].longitude}
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13, 
+          center: center
+        });
+
+        foodLocations.forEach(location => {
+          new google.maps.Marker({
+            position: {lat: location.latitude, lng: location.longitude}, 
+            map: map
+          })
+        })
       }
 
     render(){
@@ -52,6 +74,7 @@ class Results extends Component{
         return(
         //To export multiple components, surround it with a <div> tag
         <div>
+          <div id="map" style={{ width: '100%', height: '400px' }}></div>
             <div className="resultsRow">
                 <ResultCard result={results[0]}/>
                 <ResultCard result={results[1]}/>
@@ -65,7 +88,7 @@ class Results extends Component{
             <div>
             <button className="button" onClick={() => this.onBackClick()} style={{width: "30%"}}><h3>Choose Again</h3></button>
             </div>
-        </div>
+        </div>  
         
         
         );
