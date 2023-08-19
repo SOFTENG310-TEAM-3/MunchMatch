@@ -2,12 +2,12 @@ import React from 'react';
 //Creates the google map variable
 const google = window.google
 
-function getResults(queryType){
+function getResults(queryType, lat, lng){
     //Stores the user's location as google.maps.LatLng (Latitude and Longitude)
     //Change location variables to props variables
-    const userLocation = new google.maps.LatLng(-36.8594224, 174.5413159)
+    const userLocation = new google.maps.LatLng(lat, lng)
 
-   //The parameters for requesting nearby locations for places to eat
+    //The parameters for requesting nearby locations for places to eat
     let request = {
         //Change query to button input
         query: queryType,
@@ -19,8 +19,8 @@ function getResults(queryType){
     }
     //Creates the variable on where it will store the output of the requested data should be
     let service = new google.maps.places.PlacesService(document.createElement('div'));
-    
-    //Gets the data and retrieves the data to the callback function 
+
+    //Gets the data and retrieves the data to the callback function
     return new Promise((resolve, reject) => {
         service.textSearch(request, (results, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -81,7 +81,7 @@ function getResults(queryType){
             reject(new Error('Places API request failed'));
           }
         });
-      });
+    });
 }
 
 export {getResults};
