@@ -10,7 +10,7 @@ const ResultCard = ({ result }) => {
             
             <div className="resultsHeader">
                 <h3>{result?.name ? result?.name || <Skeleton/> : "No nearby resturants found" }</h3>
-                <h5>10 KM | {Array(result?.price).fill('$').join('')}</h5>
+                <h4>{Array(result?.price).fill('$').join('')}</h4>
             </div>
 
             <div className="actionContainer">

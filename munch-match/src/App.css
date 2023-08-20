@@ -85,8 +85,11 @@ h5 {
 
 .resultsHeader {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: top;
+  align-items: flex-start;
+  text-align: left;
+  gap: 5px;
 }
 
 .actionContainer {
