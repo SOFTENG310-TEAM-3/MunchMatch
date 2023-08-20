@@ -7,13 +7,11 @@ const ResultCard = ({ result }) => {
     return (
         
         <div className="button results">
-
-                            
+            
             <div className="resultsHeader">
                 <h3>{result?.name ? result?.name || <Skeleton/> : "No nearby resturants found" }</h3>
                 <h5>10 KM | {Array(result?.price).fill('$').join('')}</h5>
             </div>
-
 
             <div className="actionContainer">
             <button className="actionButton"><a href={result?.maps|| <Skeleton/>}  target="_blank"><h4>DIRECTIONS</h4></a></button>
@@ -28,7 +26,9 @@ const ResultCard = ({ result }) => {
             <h5>Phone: {result?.formattedPhone ? result?.formattedPhone || <Skeleton/>: "N/A"}</h5>
             </div>
             
-            <img className="resultImage" src={result?.picture?.getUrl() ? result?.picture?.getUrl():dessert} alt="picture of restaruant"></img>
+            <div className="resultImageContainer">
+                <img className="resultImage" src={result?.picture?.getUrl() ? result?.picture?.getUrl():dessert} alt="picture of restaurant"></img>
+            </div>
         </div>
     )
 }
