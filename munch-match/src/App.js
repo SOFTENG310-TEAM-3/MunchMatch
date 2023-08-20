@@ -2,7 +2,7 @@ import "./App.css"
 //imports the button component
 
 import ExampleButton from "./components/exampleButtons.jsx"
-import Results from "./components/results"
+import Results from "./components/resultsLayout"
 import fork from "./images/fork.png"
 import knife from "./images/knife.png"
 import React, {useState} from "react";

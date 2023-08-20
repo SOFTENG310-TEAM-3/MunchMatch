@@ -2,10 +2,14 @@
 import { Component } from "react";
 import "../App.css"
 import ResultCard from "./resultCard"
-import { getResults } from "../MapsService.js"
+import { getResults } from "../services/MapsService.js"
+
+//Creates the google map variable
+const google = window.google; 
 
 //Creates the Button component
 class Results extends Component{
+
     state = {
         results: [],
       };
