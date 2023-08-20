@@ -33,6 +33,7 @@ const ResultCard = ({ result }) => {
             </div>)}
         </div>
     )
-}
+    
+};
 
-export default ResultCard
+export default ResultCard;
