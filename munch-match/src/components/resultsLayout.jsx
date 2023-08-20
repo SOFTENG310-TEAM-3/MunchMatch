@@ -1,10 +1,8 @@
 //Tells react that this is an component
 import { Component } from "react";
 import "../App.css"
-import Rating from "./rating";
 import ResultCard from "./resultCard"
-import dessert from "../images/dessert.png"
-import { getResults } from "../Results.js"
+import { getResults } from "../MapsService.js"
 
 //Creates the Button component
 class Results extends Component{
@@ -60,7 +58,7 @@ class Results extends Component{
         });
 
         foodLocations.forEach(location => {
-          new google.maps.Marker({
+            new google.maps.Marker({
             position: {lat: location.latitude, lng: location.longitude}, 
             map: map
           })
@@ -74,8 +72,7 @@ class Results extends Component{
 
         return(
         //To export multiple components, surround it with a <div> tag
-        <div>
-          <div id="map" className="map"></div>
+        <div className="resultsContainer">
             <div className="resultsRow">
                 <ResultCard result={results[0]}/>
                 <ResultCard result={results[1]}/>
@@ -86,6 +83,7 @@ class Results extends Component{
                 <ResultCard result={results[4]}/>
                 <ResultCard result={results[5]}/>
             </div>
+            <div id="map" className="map"></div>
             <div>
             <button className="button" onClick={() => this.onBackClick()} style={{width: "30%"}}><h3>Choose Again</h3></button>
             </div>
