@@ -26,9 +26,11 @@ const ResultCard = ({ result }) => {
             <h5>Phone: {result?.formattedPhone ? result?.formattedPhone || <Skeleton/>: "N/A"}</h5>
             </div>
             
-            <div className="resultImageContainer">
-                <img className="resultImage" src={result?.picture?.getUrl() ? result?.picture?.getUrl():dessert} alt="picture of restaurant"></img>
-            </div>
+            {/* Image only shows when there is one */}
+            {result?.picture?.getUrl() && 
+            (<div className="resultImageContainer">
+                <img className="resultImage" src={result?.picture?.getUrl()} alt="picture of restaurant"></img>
+            </div>)}
         </div>
     )
 }
