@@ -42,6 +42,7 @@ class ExampleButtons extends Component{
         <div>
           <button className="button" onClick={() => this.onButtonClick("supriseme")} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
         </div>
+        <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
       </div>
       
       
