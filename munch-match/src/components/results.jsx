@@ -17,6 +17,7 @@ class Results extends Component{
       };
     
       componentDidMount() {
+        // Obtain user location when results are requested 
         this.fetchUserLocation().then((position) => {
           this.fetchResults(position.coords.latitude, position.coords.longitude);
         }).catch((err) => {
@@ -24,6 +25,7 @@ class Results extends Component{
         }); 
       }
 
+      // Function to fetch user location using geolocation 
       fetchUserLocation() {
         return new Promise((resolve, reject) => {
           if (!navigator.geolocation) {
@@ -35,10 +37,14 @@ class Results extends Component{
       }
     
 
+      // Call our api with the users coordinates and set results
       fetchResults = (latitude, longitude) => {
         getResults(this.props.type, latitude, longitude)
           .then(results => {
-            this.setState({ results });
+            // Make sure the results are sorted by rating 
+            const sortedResults = results.sort((r1, r2) => r2.rating - r1.rating);
+            this.setState({ results: sortedResults });
+            // Get the coordinates of the restaurannts and initialize our embedded map
             const locations = results.map(result => {
               return {
                 latitude: result.latitude, 
@@ -51,7 +57,7 @@ class Results extends Component{
             console.error('Error fetching results:', error);
           });
       }
-
+      // Function to initialize embedded map
       initializeMap = (foodLocations) => {
         const center = {lat: foodLocations[0].latitude, lng: foodLocations[0].longitude}
         const map = new google.maps.Map(document.getElementById('map'), {
@@ -59,6 +65,7 @@ class Results extends Component{
           center: center
         });
 
+        // Loop through each location and extract its coordinates and make a new marker on the map
         foodLocations.forEach(location => {
           new google.maps.Marker({
             position: {lat: location.latitude, lng: location.longitude}, 
