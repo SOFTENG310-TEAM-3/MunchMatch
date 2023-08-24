@@ -32,6 +32,7 @@ function getResults(queryType, lat, lng) {
             // Code to run after fetchAllDetails has completed
             console.log("All details fetched and processed.");
             const today = new Date();
+            const days = [6, 0, 1, 2, 3, 4, 5];
             const dayOfWeek = today.getDay();
             extractedResults = detailed_results.slice(0, 6).map((place) => ({
               name: place?.name,
@@ -42,7 +43,7 @@ function getResults(queryType, lat, lng) {
               price: place?.price_level,
               website: place?.website,
               maps: place?.url,
-              openingHours: place.opening_hours?.weekday_text[dayOfWeek],
+              openingHours: place.opening_hours?.weekday_text[days[dayOfWeek]],
               picture: place?.photos[0],
               latitude: place?.geometry?.location.lat(),
               longitude: place?.geometry?.location.lng(),
@@ -66,10 +67,9 @@ async function fetchAllDetails(results, detailed_results, service) {
       fetchDetails(result.place_id, service)
     );
     const detailedResponses = await Promise.all(detailPromises);
-    detailed_results = detailedResponses;
-    console.log(detailed_results);
+    console.log(detailedResponses);
     console.log(detailed_results.length);
-    return detailed_results;
+    return detailedResponses;
   } catch (error) {
     console.error(error);
   }
