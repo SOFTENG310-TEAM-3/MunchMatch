@@ -66,6 +66,11 @@ h5 {
   z-index: 2;
 }
 
+.resultsContainer {
+  width: 80%;
+  margin: auto;
+}
+
 .results {
   padding: 1.5%;
   width: 33.33%;
@@ -80,7 +85,7 @@ h5 {
   justify-content: space-between;
   align-items: stretch;
   margin: 0 auto;
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .resultsHeader {
@@ -168,11 +173,10 @@ h5 {
 }
 
 .map {
-  width: 50%;
   height: 400px;
-  margin: 0 auto;
-  border-radius: 10px;
+  border: 8px solid white;
+  border-radius: 25px;
   margin-bottom: 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+  margin-top: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-
