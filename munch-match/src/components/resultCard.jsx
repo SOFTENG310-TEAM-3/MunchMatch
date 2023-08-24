@@ -1,5 +1,4 @@
 import Rating from "./rating";
-import dessert from "../images/dessert.png"
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
