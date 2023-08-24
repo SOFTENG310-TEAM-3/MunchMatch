@@ -1,4 +1,3 @@
-import React from "react";
 //Creates the google map variable
 const google = window.google;
 
@@ -26,37 +25,10 @@ function getResults(queryType, lat, lng) {
   return new Promise((resolve, reject) => {
     service.textSearch(request, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        let detailed_results = [];
-
-        async function fetchDetails(placeId) {
-          return new Promise((resolve, reject) => {
-            service.getDetails({ placeId }, (result, status) => {
-              if (status === google.maps.places.PlacesServiceStatus.OK) {
-                resolve(result);
-              } else {
-                reject(new Error("Place details request failed"));
-              }
-            });
-          });
-        }
-
-        async function fetchAllDetails(results) {
-          try {
-            const detailPromises = results.map((result) =>
-              fetchDetails(result.place_id)
-            );
-            const detailedResponses = await Promise.all(detailPromises);
-            detailed_results = detailedResponses;
-            console.log(detailed_results);
-            console.log(detailed_results.length);
-          } catch (error) {
-            console.error(error);
-          }
-        }
         let extractedResults = [];
         (async () => {
           try {
-            await fetchAllDetails(results);
+            let detailed_results = await fetchAllDetails(results, [], service);
             // Code to run after fetchAllDetails has completed
             console.log("All details fetched and processed.");
             const today = new Date();
@@ -83,6 +55,33 @@ function getResults(queryType, lat, lng) {
         })();
       } else {
         reject(new Error("Places API request failed"));
+      }
+    });
+  });
+}
+
+async function fetchAllDetails(results, detailed_results, service) {
+  try {
+    const detailPromises = results.map((result) =>
+      fetchDetails(result.place_id, service)
+    );
+    const detailedResponses = await Promise.all(detailPromises);
+    detailed_results = detailedResponses;
+    console.log(detailed_results);
+    console.log(detailed_results.length);
+    return detailed_results;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function fetchDetails(placeId, service) {
+  return new Promise((resolve, reject) => {
+    service.getDetails({ placeId }, (result, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        resolve(result);
+      } else {
+        reject(new Error("Place details request failed"));
       }
     });
   });
