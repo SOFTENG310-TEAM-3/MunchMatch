@@ -13,11 +13,11 @@ const Rating = ({value, total}) => {
     // Add the neccessary stars
     for(let i = 0; i < 5; i++) {
         if (i < fullStars){
-            stars.push(<FontAwesomeIcon icon={faStar} key={i} />);
+            stars.push(<FontAwesomeIcon icon={faStar} key={i} alt="full star"/>);
         } else if (i === fullStars && hasHalf){
-            stars.push(<FontAwesomeIcon icon={faStarHalfAlt} key={i} />);
+            stars.push(<FontAwesomeIcon icon={faStarHalfAlt} key={i} alt="half star"/>);
         } else {
-            stars.push(<FontAwesomeIcon icon={faStar} key={i} className="emptyStar"/>);
+            stars.push(<FontAwesomeIcon icon={faStar} key={i} className="emptyStar" alt="empty star"/>);
         }
     }
 
