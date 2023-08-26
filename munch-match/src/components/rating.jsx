@@ -21,6 +21,7 @@ const Rating = ({value, total}) => {
         }
     }
 
+    // Return the rating stars 
     return (
         <div className="rating">
             {stars}

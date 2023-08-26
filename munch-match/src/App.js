@@ -1,7 +1,7 @@
 import "./App.css"
 //imports the button component
 
-import ExampleButton from "./components/exampleButtons.jsx"
+import FoodOptionButtons from "./components/foodOptionButtons"
 import Results from "./components/resultsLayout"
 import fork from "./images/fork.png"
 import knife from "./images/knife.png"
@@ -34,7 +34,7 @@ function App() {
         <h1>MunchMatch</h1>
       </header>
       <img className="knife" src={knife} alt="knife"></img>
-      {showResults ? (<Results type={selectedType} onBackClick={onBackClick}/>) : (<ExampleButton onButtonClick={onButtonClick}/>)}
+      {showResults ? (<Results type={selectedType} onBackClick={onBackClick}/>) : (<FoodOptionButtons onButtonClick={onButtonClick}/>)}
       <img className="fork" src={fork} alt="fork"></img>
         </SkeletonTheme>
     </div>
