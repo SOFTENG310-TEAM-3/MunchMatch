@@ -36,7 +36,29 @@ We use [Github Flow](https://docs.github.com/en/get-started/quickstart/github-fl
 7. Once approved, the code will be merged into the main branch.
 
 ## How to Set Up Your Environment and Run Tests
-### Not Sure
+
+To start the project:
+```
+cd munch-match
+npm i 
+npm start
+
+``` 
+
+To run the tests: 
+```
+cd munch-match
+npm test
+```
+
+The ```cd munch-match``` takes you to the directory so it is not needed if you are already in the munch-match folder.
+
+The ```npm i ``` installs all the dependencies that are needed and only needs to be run once. 
+
+To obtain the Google API Key create an google developer account and enable the Maps Javascript API and Places API for your google API key. You can find more information here: https://developers.google.com/maps/documentation/javascript/get-api-key#console
+
+To use the Google API key in the app create an .env file in the munch-match folder and name it ```REACT_APP_GOOGLE_API_KEY``` so it would look like ```REACT_APP_GOOGLE_API_KEY = API_KEY_HERE```
+
 
 ## Types of Contributions
 All types of contributions are appreciated:
@@ -46,7 +68,7 @@ All types of contributions are appreciated:
 - Bug reporting.
 - Feature suggestions.
 
-Please note that we do not accept contributions that violate our [code of conduct](). Thanks:)
+Please note that we do not accept contributions that violate our [code of conduct](CODE_OF_CONDUCT.md). Thanks:)
 
 ## Getting Started for Newcomers
 - Please check the issues that already released and please put your name on with the issue that you are working on.
@@ -68,14 +90,15 @@ Please note that we do not accept contributions that violate our [code of conduc
 In this project, we would use Google API to provide restaurant information like the name, price, location.
 
 ## Project Ground Rules
-Code of Conduct: All contributors must follow our code of conduct. Please see detail via [Code of Conduct]()
+Code of Conduct: All contributors must follow our code of conduct. Please see detail via [Code of Conduct](CODE_OF_CONDUCT.md)
+
 ## Contact us
 | Name | Upi | Email |
 | ------- | ------- | ------- |
-|  Name  | data    | data    |
-|  Name  | data    | data    |
-|  Name  | data    | data    |
-|  Name  | data    | data    |
-|  Name | data    | data    |
+|  Tanishq Ranjith  | tnai255    | tran631@aucklanduni.ac.nz    |
+|  Kyle LoweKyle  | klow358    | klow358@aucklanduni.ac.nz    |
+|  Tisha Naicker  | tnai255    | tnai255@aucklanduni.ac.nz   |
+|  James Gai  | jgai284    | jgai284@aucklanduni.ac.nz     |
+|  Manjot Mann | mman755    | mman755@aucklanduni.ac.nz     |
 | Xinhuiqiang Xu    |xxu511    | xxu511@aucklanduni.ac.nz   |
 
