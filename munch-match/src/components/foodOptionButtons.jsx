@@ -11,7 +11,7 @@ import pizza from "../images/pizza.png"
 import sushi from "../images/sushi.png"
 
 //Creates the Buttons component
-class ExampleButtons extends Component{
+class FoodOptionButtons extends Component{
   onButtonClick = (type) => {
       //generate a random type from the food choice array
       if (type === "supriseme"){
@@ -50,4 +50,4 @@ class ExampleButtons extends Component{
   }
 }
 
-export default ExampleButtons;
+export default FoodOptionButtons;
