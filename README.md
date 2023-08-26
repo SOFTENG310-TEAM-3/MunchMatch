@@ -8,9 +8,11 @@ The project is aiming to provide functionality for locating restaurants that are
 The goal of this project is to provide restaurant choices when users are struggling with making decisions. Restaurants generated from different food categories can also be ordered by distance, rate, and other properties. In the meantime, MunchMatch also supports listing the details of each restaurant.
 
 # How to deploy and run this project?
+
 To start the project:
 ```
 cd munch-match
+npm i 
 npm start
 
 ``` 
@@ -21,7 +23,9 @@ cd munch-match
 npm test
 ```
 
-The ```cd munch-match``` takes you to the directory so it is not needed if you are already in the munch-match folder
+The ```cd munch-match``` takes you to the directory so it is not needed if you are already in the munch-match folder.
+
+The ```npm i ``` installs all the dependencies that are needed and only needs to be run once. 
 
 # Available versions
 A1 provides the basic functions including selecting preferred or random food options, listing restaurant details obtained from Google Maps, and linking to Google Maps. In future versions (A2/A3), some new features such as sharing particular restaurants with friends could be added.
