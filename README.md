@@ -1,5 +1,5 @@
 # MunchMatch
-The main purpose of our project is to aid users who are indecisive about what to eat. We will create a tool that makes it easy for people to find places to eat near them.
+MutchMatch is a web application that is designed to recommend users on restaurants that they want to eat by enhancing the search process to be in a more efficient and stylish manner. This project is associated with the University of Auckland course SOFTENG310 and was created by KTTJXM (Catjam) - team 3.  
 
 # What does this project do?
 The project is aiming to provide functionality for locating restaurants that are linked to Google Maps by selecting or randomizing food category options via the application named MunchMatch. Users would be able to gain a wonderful experience of choosing preferred restaurants from elegant and user-friendly interfaces.
