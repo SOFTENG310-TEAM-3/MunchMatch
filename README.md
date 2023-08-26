@@ -27,6 +27,10 @@ The ```cd munch-match``` takes you to the directory so it is not needed if you a
 
 The ```npm i ``` installs all the dependencies that are needed and only needs to be run once. 
 
+To obtain the Google API Key create an google developer account and enable the Maps Javascript API and Places API for your google API key. You can find more information here: https://developers.google.com/maps/documentation/javascript/get-api-key#console
+
+To use the Google API key in the app create an .env file in the munch-match folder and name it ```REACT_APP_GOOGLE_API_KEY``` so it would look like ```REACT_APP_GOOGLE_API_KEY = API_KEY_HERE```
+
 # Available versions
 A1 provides the basic functions including selecting preferred or random food options, listing restaurant details obtained from Google Maps, and linking to Google Maps. In future versions (A2/A3), some new features such as sharing particular restaurants with friends could be added.
 
