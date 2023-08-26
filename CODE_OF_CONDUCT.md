@@ -60,8 +60,16 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-the University of Auckland.
+reported to the community leaders responsible for enforcement at: 
+| Name | Upi | Email |
+| ------- | ------- | ------- |
+|  Tanishq Ranjith  | tnai255    | tran631@aucklanduni.ac.nz    |
+|  Kyle LoweKyle  | klow358    | klow358@aucklanduni.ac.nz    |
+|  Tisha Naicker  | tnai255    | tnai255@aucklanduni.ac.nz   |
+|  James Gai  | jgai284    | jgai284@aucklanduni.ac.nz     |
+|  Manjot Mann | mman755    | mman755@aucklanduni.ac.nz     |
+| Xinhuiqiang Xu    |xxu511    | xxu511@aucklanduni.ac.nz   |
+
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
