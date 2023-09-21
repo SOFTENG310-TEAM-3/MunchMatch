@@ -9,14 +9,14 @@ import dessert from "../images/dessert.png"
 import fruit from "../images/fruit.png"
 import pizza from "../images/pizza.png"
 import sushi from "../images/sushi.png"
+import foodChoices from "../data/categories";
 
 //Creates the Buttons component
 class FoodOptionButtons extends Component{
   onButtonClick = (type) => {
       //generate a random type from the food choice array
-      if (type === "supriseme"){
-          const foodChoices = ["cafe", "burger", "sushi", "fruit", "dessert", "pizza", "chicken", "bakery"];
-          const randomNumber = Math.floor(Math.random() * 8);
+      if (type === "random"){
+          const randomNumber = Math.floor(Math.random() * foodChoices.length);
           type = foodChoices[randomNumber];
       }
 
@@ -40,7 +40,7 @@ class FoodOptionButtons extends Component{
           <button className="button" onClick={() => this.onButtonClick("bakery")}><img className="food" src={bakery} alt="bakery"></img></button>
         </div>
         <div>
-          <button className="button" onClick={() => this.onButtonClick("supriseme")} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
+          <button className="button" onClick={() => this.onButtonClick("random")} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
         </div>
         <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
       </div>
