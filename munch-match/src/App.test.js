@@ -1,17 +1,17 @@
 import { render, fireEvent} from '@testing-library/react';
 import React from 'react';
-import ExampleButton from "./components/exampleButtons"
+import FoodOptionButtons from './components/foodOptionButtons';
 import Rating from "./components/rating"
 import Results from "./components/resultsLayout"
 import ResultCard from "./components/resultCard"
 import { getResults } from './services/MapsService.js';
 
 // Testing if food buttons work as expected
-describe('ExampleButtons Component', () => {
+describe('FoodOptionButtons Component', () => {
 
   it('calls onButtonClick with correct type for each button', () => {
     const onButtonClickMock = jest.fn();
-    const { getByAltText } = render(<ExampleButton onButtonClick={onButtonClickMock} />);
+    const { getByAltText } = render(<FoodOptionButtons onButtonClick={onButtonClickMock} />);
     
     const cafeButton = getByAltText('cafe');
     fireEvent.click(cafeButton);
@@ -34,7 +34,7 @@ describe('ExampleButtons Component', () => {
   // Tests that the surprise me button does choose out of the selected food type
   it('calls onButtonClick with a random type for "Surprise Me!"', () => {
     const onButtonClickMock = jest.fn();
-    const { getByText } = render(<ExampleButton onButtonClick={onButtonClickMock} />);
+    const { getByText } = render(<FoodOptionButtons onButtonClick={onButtonClickMock} />);
     
     const surpriseButton = getByText('Surprise Me!');
     fireEvent.click(surpriseButton);
