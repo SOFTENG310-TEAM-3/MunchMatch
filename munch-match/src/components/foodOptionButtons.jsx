@@ -59,6 +59,7 @@ class FoodOptionButtons extends Component {
     showNextQuestion = (nextQuestion) => {
         const quizQuestions = document.getElementsByClassName("quiz");
 
+        // Hide ALL quiz question containers
         for (let i = 0; i < quizQuestions.length; i++) {
             quizQuestions[i].style.display = "none";
         }
@@ -67,6 +68,7 @@ class FoodOptionButtons extends Component {
     }
 
     disableFoodOptions = (foodOptions) => {
+        // Take the input array and disable those specific buttons
         for (let foodOption of foodOptions) {
             const foodOptionId = document.getElementById(foodOption);
             foodOptionId.disabled = true;
@@ -75,6 +77,7 @@ class FoodOptionButtons extends Component {
     }
 
     enableAllButtons = () => {
+        // Find all food buttons and enable them all again
         const buttons = document.querySelectorAll(".foodButton");
         buttons.forEach((button) => {
             button.disabled = false;
