@@ -188,3 +188,15 @@ h5 {
 #stopQuiz {
   display: none;
 }
+
+.stopButton {
+  background-color: #E38681;
+  border: 8px solid white;
+  border-radius: 25px;
+  z-index: 2;
+}
+
+.disabled {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
