@@ -76,6 +76,7 @@ class FoodOptionButtons extends Component {
             const foodOptionId = document.getElementById(foodOption);
             foodOptionId.disabled = true;
             foodOptionId.style.backgroundColor = "darkgrey"
+            foodOptionId.classList.add('disabled');
         }
     }
 
@@ -85,6 +86,7 @@ class FoodOptionButtons extends Component {
         buttons.forEach((button) => {
             button.disabled = false;
             button.style.backgroundColor = ""
+            button.classList.remove('disabled');
         });
     }
 
@@ -119,12 +121,12 @@ class FoodOptionButtons extends Component {
                         <button className="button" onClick={() => this.onQuizButtonClick("quizStart")} style={{width: "55%"}}><h2>Take the Quiz!</h2></button>
                     </div>
                 </div>
-                <div className="quiz" id="questionOne" style={{display: 'flex', justifyContent: 'space-between'}}>
+                <div className="quiz" id="questionOne">
                     <h3>Sweet or Savoury?</h3>
                     <button className="button" onClick={() => this.onQuizButtonClick("sweet")} style={{width: "30%"}}><h2>Sweet</h2></button>
                     <button className="button" onClick={() => this.onQuizButtonClick("savoury")} style={{width: "30%"}}><h2>Savoury</h2></button>
                 </div>
-                <div className="quiz" id="questionTwo" style={{display: 'flex', justifyContent: 'space-between'}}>
+                <div className="quiz" id="questionTwo">
                     <h3>Big Feed or Little Treat?</h3>
                     <button className="button" onClick={() => this.onQuizButtonClick("bigFeed")} style={{width: "30%"}}><h2>Big Feed</h2></button>
                     <button className="button" onClick={() => this.onQuizButtonClick("littleTreat")} style={{width: "30%"}}><h2>Little Treat</h2></button>

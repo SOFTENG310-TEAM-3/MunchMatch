@@ -182,6 +182,8 @@ h5 {
 }
 
 .quiz {
+  display: flex;
+  justifyContent: space-between;
   display: none;
 }
 
@@ -196,7 +198,6 @@ h5 {
   z-index: 2;
 }
 
-.disabled {
-  filter: grayscale(100%);
-  opacity: 0.6;
+.disabled img {
+  filter: grayscale(1);
 }
