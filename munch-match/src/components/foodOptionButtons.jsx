@@ -1,13 +1,13 @@
 //Tells react that this is an component
 import { Component } from "react";
-import "../App.css"
 import foodChoices from "../data/categories";
 import FoodOptionButton from "./FoodOptionButton";
-import "./FoodOptionButtons.css";
+import "../App.css"
+import styles from "./FoodOptionButtons.module.css"
 
 //Creates the Buttons component
 class FoodOptionButtons extends Component{
-  onButtonClick = (type) => {
+  handleClick = (type) => {
       //generate a random type from the food choice array
       if (type === "random"){
           const randomNumber = Math.floor(Math.random() * foodChoices.length);
@@ -19,11 +19,10 @@ class FoodOptionButtons extends Component{
 
   render(){
     return(
-      //To export multiple components, surround it with a <div> tag
       <>
-      <div className="buttonsContainer">
-        {foodChoices.map((choice) => (
-          <FoodOptionButton foodOption={choice} />
+      <div className={styles.buttonsContainer}>
+        {foodChoices.map((choice, index) => (
+          <FoodOptionButton key={index} foodOption={choice} onClick={this.handleClick} />
         ))}
       </div>
         <div>
@@ -31,8 +30,6 @@ class FoodOptionButtons extends Component{
         </div>
         <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
       </>
-      
-      
       )
   }
 }

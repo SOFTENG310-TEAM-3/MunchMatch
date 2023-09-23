@@ -1,7 +1,7 @@
 import "./App.css"
 //imports the button component
 
-import FoodOptionButtons from "./components/FoodOptionButtons"
+import FoodOptionButtons from "./components/foodOptionButtons"
 import Results from "./components/resultsLayout"
 import fork from "./images/fork.png"
 import knife from "./images/knife.png"
