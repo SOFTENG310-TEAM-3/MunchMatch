@@ -1,6 +1,6 @@
-const FoodOptionButton = ({ foodOption }) => {
+const FoodOptionButton = ({ foodOption, onClick }) => {
     return (
-        <button className="button" onClick={() => this.onButtonClick(foodOption)}>
+        <button className="button" onClick={() => onClick(foodOption)}>
             <img className="food" src={require(`../images/${foodOption}.png`)} alt={foodOption} />
         </button>
     );
