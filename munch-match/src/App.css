@@ -182,9 +182,22 @@ h5 {
 }
 
 .quiz {
+  display: flex;
+  justifyContent: space-between;
   display: none;
 }
 
 #stopQuiz {
   display: none;
+}
+
+.stopButton {
+  background-color: #E38681;
+  border: 8px solid white;
+  border-radius: 25px;
+  z-index: 2;
+}
+
+.disabled img {
+  filter: grayscale(1);
 }

@@ -24,6 +24,7 @@ class FoodOptionButtons extends Component {
     }
 
     onQuizButtonClick = (type) => {
+        document.querySelector(".stopButton h3").textContent = "Stop Quiz";
         switch (type) {
             case "quizStart":
                 // Start the quiz by hiding the existing buttons and showing the first question
@@ -42,10 +43,12 @@ class FoodOptionButtons extends Component {
             case "bigFeed":
                 this.disableFoodOptions(["dessert", "fruit"]);
                 this.showNextQuestion("quizFinish");
+                document.querySelector(".stopButton h3").textContent = "Back to Menu";
                 break;
             case "littleTreat":
                 this.disableFoodOptions(["burger", "pizza", "chicken"]);
                 this.showNextQuestion("quizFinish");
+                document.querySelector(".stopButton h3").textContent = "Back to Menu";
                 break;
             default:
                 // Default is to go back to start
@@ -73,6 +76,7 @@ class FoodOptionButtons extends Component {
             const foodOptionId = document.getElementById(foodOption);
             foodOptionId.disabled = true;
             foodOptionId.style.backgroundColor = "darkgrey"
+            foodOptionId.classList.add('disabled');
         }
     }
 
@@ -82,6 +86,7 @@ class FoodOptionButtons extends Component {
         buttons.forEach((button) => {
             button.disabled = false;
             button.style.backgroundColor = ""
+            button.classList.remove('disabled');
         });
     }
 
@@ -118,19 +123,19 @@ class FoodOptionButtons extends Component {
                 </div>
                 <div className="quiz" id="questionOne">
                     <h3>Sweet or Savoury?</h3>
-                    <button className="button" onClick={() => this.onQuizButtonClick("sweet")} style={{width: "55%"}}><h2>Sweet</h2></button>
-                    <button className="button" onClick={() => this.onQuizButtonClick("savoury")} style={{width: "55%"}}><h2>Savoury</h2></button>
+                    <button className="button" onClick={() => this.onQuizButtonClick("sweet")} style={{width: "30%"}}><h2>Sweet</h2></button>
+                    <button className="button" onClick={() => this.onQuizButtonClick("savoury")} style={{width: "30%"}}><h2>Savoury</h2></button>
                 </div>
                 <div className="quiz" id="questionTwo">
                     <h3>Big Feed or Little Treat?</h3>
-                    <button className="button" onClick={() => this.onQuizButtonClick("bigFeed")} style={{width: "55%"}}><h2>Big Feed</h2></button>
-                    <button className="button" onClick={() => this.onQuizButtonClick("littleTreat")} style={{width: "55%"}}><h2>Little Treat</h2></button>
-                </div>
-                <div id="stopQuiz">
-                    <button className="button" onClick={() => this.onQuizButtonClick("")} style={{width: "20%"}}><h2>Stop Quiz</h2></button>
+                    <button className="button" onClick={() => this.onQuizButtonClick("bigFeed")} style={{width: "30%"}}><h2>Big Feed</h2></button>
+                    <button className="button" onClick={() => this.onQuizButtonClick("littleTreat")} style={{width: "30%"}}><h2>Little Treat</h2></button>
                 </div>
                 <div className="quiz" id="quizFinish">
                     <h2>Quiz Finished</h2>
+                </div>
+                <div id="stopQuiz" style={{marginTop: '15px'}}>
+                    <button className="stopButton" onClick={() => this.onQuizButtonClick("")} style={{width: "20%"}}><h3>Stop Quiz</h3></button>
                 </div>
                 <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
             </div>
