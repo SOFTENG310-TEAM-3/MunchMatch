@@ -9,28 +9,17 @@ import foodChoices from './data/categories';
 
 // Testing if food buttons work as expected
 describe('FoodOptionButtons Component', () => {
+  const onButtonClickMock = jest.fn();
 
-  it('calls onButtonClick with correct type for each button', () => {
-    const onButtonClickMock = jest.fn();
-    const { getByAltText } = render(<FoodOptionButtons onButtonClick={onButtonClickMock} />);
-
-    const cafeButton = getByAltText('cafe');
-    fireEvent.click(cafeButton);
-    expect(onButtonClickMock).toHaveBeenCalledWith(foodChoices[0]);
-
-    const burgerButton = getByAltText('burger');
-    fireEvent.click(burgerButton);
-    expect(onButtonClickMock).toHaveBeenCalledWith(foodChoices[1]);
-
-    const sushiButton = getByAltText('sushi');
-    fireEvent.click(sushiButton);
-    expect(onButtonClickMock).toHaveBeenCalledWith(foodChoices[2]);
-
-    const fruitButton = getByAltText('fruit');
-    fireEvent.click(fruitButton);
-    expect(onButtonClickMock).toHaveBeenCalledWith(foodChoices[3]);
-
+  foodChoices.forEach((choice, index) => {
+    it(`calls onButtonClick with correct type for ${choice}`, () => {
+      const { getByAltText } = render(<FoodOptionButtons onButtonClick={onButtonClickMock} />);
+      const choiceButton = getByAltText(choice);
+      fireEvent.click(choiceButton);
+      expect(onButtonClickMock).toHaveBeenCalledWith(foodChoices[index]);
+    });
   });
+
 
   // Tests that the surprise me button does choose out of the selected food type
   it('calls onButtonClick with a random type for "Surprise Me!"', () => {
