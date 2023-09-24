@@ -9,11 +9,11 @@ import foodChoices from './data/categories';
 
 // Testing if food buttons work as expected
 describe('FoodOptionButtons Component', () => {
-  const onButtonClickMock = jest.fn();
+  it(`calls onButtonClick with correct type for each food choice`, () => {
+    const onButtonClickMock = jest.fn();
+    const { getByAltText } = render(<FoodOptionButtons onButtonClick={onButtonClickMock} />);
 
-  foodChoices.forEach(choice => {
-    it(`calls onButtonClick with correct type for ${choice}`, () => {
-      const { getByAltText } = render(<FoodOptionButtons onButtonClick={onButtonClickMock} />);
+    foodChoices.forEach(choice => {
       const choiceButton = getByAltText(choice);
       fireEvent.click(choiceButton);
       expect(onButtonClickMock).toHaveBeenCalledWith(choice);
