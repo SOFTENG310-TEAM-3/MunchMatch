@@ -1,25 +1,18 @@
 //Tells react that this is an component
-import {Component} from "react";
+import { Component } from "react";
+import foodChoices from "../data/categories";
+import FoodOptionButton from "./FoodOptionButton";
 import "../App.css"
-import bakery from "../images/bakery.png"
-import burger from "../images/burger.png"
-import cafe from "../images/cafe.png"
-import chicken from "../images/chicken.png"
-import dessert from "../images/dessert.png"
-import fruit from "../images/fruit.png"
-import pizza from "../images/pizza.png"
-import sushi from "../images/sushi.png"
+import styles from "./FoodOptionButtons.module.css"
 
 //Creates the Buttons component
-class FoodOptionButtons extends Component {
-    onButtonClick = (type) => {
-        //generate a random type from the food choice array
-        if (type === "supriseMe") {
-            const foodChoices = ["cafe", "burger", "sushi", "fruit", "dessert", "pizza", "chicken", "bakery"];
-            const randomNumber = Math.floor(Math.random() * 8);
-            type = foodChoices[randomNumber];
-        }
-
+class FoodOptionButtons extends Component{
+  handleClick = (type) => {
+      //generate a random type from the food choice array
+      if (type === "random"){
+          const randomNumber = Math.floor(Math.random() * foodChoices.length);
+          type = foodChoices[randomNumber];
+      }
         this.props.onButtonClick(type);
     }
 
@@ -94,28 +87,14 @@ class FoodOptionButtons extends Component {
         return (
             //To export multiple components, surround it with a <div> tag
             <div>
-                <div>
-                    <button id="cafe" className="button foodButton" onClick={() => this.onButtonClick("cafe")}><img className="food" src={cafe} alt="cafe"></img></button>
-                    <button id="burger" className="button foodButton" onClick={() => this.onButtonClick("burger")}><img className="food" src={burger} alt="burger"></img>
-                    </button>
-                    <button id="sushi" className="button foodButton" onClick={() => this.onButtonClick("sushi")}><img className="food" src={sushi} alt="sushi"></img>
-                    </button>
-                    <button id="fruit" className="button foodButton" onClick={() => this.onButtonClick("fruit")}><img className="food" src={fruit} alt="fruit"></img>
-                    </button>
-                </div>
-                <div>
-                    <button id="dessert" className="button foodButton" onClick={() => this.onButtonClick("dessert")}><img className="food" src={dessert}
-                                                                                                               alt="dessert"></img></button>
-                    <button id="pizza" className="button foodButton" onClick={() => this.onButtonClick("pizza")}><img className="food" src={pizza} alt="pizza"></img>
-                    </button>
-                    <button id="chicken" className="button foodButton" onClick={() => this.onButtonClick("chicken")}><img className="food" src={chicken}
-                                                                                                               alt="chicken"></img></button>
-                    <button id="bakery" className="button foodButton" onClick={() => this.onButtonClick("bakery")}><img className="food" src={bakery} alt="bakery"></img>
-                    </button>
+                <div className={styles.buttonsContainer}>
+                  {foodChoices.map((choice, index) => (
+                    <FoodOptionButton key={index} foodOption={choice} onClick={this.handleClick} />
+                  ))}
                 </div>
                 <div id="startDiv">
                     <div>
-                        <button className="button" onClick={() => this.onButtonClick("supriseMe")} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
+                      <button className="button" onClick={() => this.handleClick("random")} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
                     </div>
                     <div>
                         <button className="button" onClick={() => this.onQuizButtonClick("quizStart")} style={{width: "55%"}}><h2>Take the Quiz!</h2></button>
