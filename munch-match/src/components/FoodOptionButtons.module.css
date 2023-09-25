@@ -1,7 +1,44 @@
+button {
+    cursor: pointer;
+}
+
+.button {
+    background-color: #dbdeff;
+    border: 8px solid white;
+    border-radius: 25px;
+    margin: 0.5%;
+    z-index: 2;
+}
+
 .buttonsContainer {
     display: flex;
     flex-wrap: wrap;
     max-width: 800px;
     margin: auto;
     justify-content: center;
+}
+
+.quiz {
+    display: flex;
+    justifyContent: space-between;
+    display: none;
+}
+
+#stopQuiz {
+    display: none;
+}
+
+.stopButton {
+    background-color: #E38681;
+    border: 8px solid white;
+    border-radius: 25px;
+    z-index: 2;
+}
+
+.attribution {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    z-index: 1;
+    font-size: 0.5em;
 }
