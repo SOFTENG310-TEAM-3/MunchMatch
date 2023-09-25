@@ -1,13 +1,10 @@
-button {
-    cursor: pointer;
-}
-
 .button {
     background-color: #dbdeff;
     border: 8px solid white;
     border-radius: 25px;
     margin: 0.5%;
     z-index: 2;
+    cursor: pointer;
 }
 
 .buttonsContainer {
@@ -33,6 +30,7 @@ button {
     border: 8px solid white;
     border-radius: 25px;
     z-index: 2;
+    cursor: pointer;
 }
 
 .attribution {

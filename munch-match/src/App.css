@@ -121,24 +121,13 @@ h5 {
   border-radius: 15px;
 }
 
-.food {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  overflow: hidden;
-}
-
-.surpise {
+.surprise {
   display: block;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-.emptyStar {
-  color: gray;
 }
 
 @media (prefers-reduced-motion: no-preference) {
