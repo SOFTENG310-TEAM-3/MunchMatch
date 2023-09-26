@@ -12,7 +12,7 @@ class FoodOptionButtons extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          isModalOpen: false  // State to control modal visibility
+          isModalOpen: false,  // State to control modal visibility
           quizStep: "start", // Initial quiz step
           currentQuestionId: 0,
           disabledOptions: [],
