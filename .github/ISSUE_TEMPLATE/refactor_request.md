@@ -1,13 +1,13 @@
 ---
- name: Refactor request
- about: Suggest something that needs to be refactored.
- title: ''
- labels: enhancement
- assignees: ''
+name: Refactor request
+about: Suggest something that needs to be refactored.
+title: ''
+labels: refactoring
+assignees: ''
 
 ---
 
- **Is your refactor request related to a problem? Please describe.** 
+**Is your refactor request related to a problem? Please describe.** 
 
  <!-- Ex. I'm having problems reading the code because [...] -->
 
