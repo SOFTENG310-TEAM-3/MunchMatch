@@ -8,7 +8,7 @@ import "../App.css"
 const ResultCard = ({ result }) => {
     return (
         
-        <div className={`${styles.buttonD} ${styles.results}`}>
+        <div className={`${styles.buttonResultCard} ${styles.results}`}>
             {/* This populates the card with the name of the place including its price, if not found an appropriate message is shown*/}
             <div className={styles.resultsHeader}>
                 <h3>{result?.name ? result?.name || <Skeleton/> : "No nearby resturants found" }</h3>

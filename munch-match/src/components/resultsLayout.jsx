@@ -97,7 +97,7 @@ class Results extends Component{
             </div>
             <div id="map" className={styles.map}></div>
             <div>
-            <button className={styles.buttonRL} onClick={() => this.onBackClick()} style={{width: "30%"}}><h3>Choose Again</h3></button>
+            <button className={styles.buttonResultLayout} onClick={() => this.onBackClick()} style={{width: "30%"}}><h3>Choose Again</h3></button>
             </div>
         </div>  
         
