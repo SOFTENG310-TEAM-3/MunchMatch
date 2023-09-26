@@ -10,10 +10,11 @@
 .reels {
   display: flex;
   flex-direction: row;
-  justify-content: center; /* or flex-start to align to the start */
+  justify-content: center;
   gap: 100px;
+  margin-top: 15px;
   flex-wrap: nowrap;
-  overflow: none; /* Use 'hidden' instead of 'none' */
+  overflow: none;
   height: 40vh;
 }
 
@@ -21,8 +22,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 128px;
-  height: 128px;
+  width: 150px;
+  height: 150px;
 }
 
 .spin-button {
@@ -33,7 +34,7 @@
   border: none;
   border-radius: 50px;  
   margin-bottom: 1rem;
-  font-weight: bold;  /* Bold text */
+  font-weight: bold;  
   box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
@@ -49,6 +50,31 @@
   background: grey;
   box-shadow: none;
   cursor: not-allowed;
+}
+
+.searchButton {
+  /* background: rgb(149, 235, 84) !important; */
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 50px;
+  margin-bottom: 2.5rem; 
+  font-weight: bold;
+  transition: background 0.6s, transform 0.5s;
+}
+/* 
+.searchButton:hover {
+  background: rgb(191, 245, 150) !important;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.3);
+  transform: translateY(-7px);
+} */
+
+.spinAgain {
+  color: red;
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 2.5rem; 
 }
 
 .icons img {

@@ -25,3 +25,12 @@
     z-index: 1001;
   }
   
+  .modalCloseButton {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+  }

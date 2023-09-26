@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Modal.module.css';
-import SlotMachine from '../SlotMachine/SlotMachine'; 
+import SlotMachine from '../SlotMachine/SlotMachine';
 
-const Modal = ({ isOpen, onClose }) => {
+const Modal = ({ isOpen, onClose, onReveal }) => {
+  const [slotMachineResult, setSlotMachineResult] = useState(null);
+
   const handleReveal = (randomCategory) => {
-    // Function to handle when food item is selected
-    console.log("Revealed category: ", randomCategory);
+    setSlotMachineResult(randomCategory);
+  };
+
+  const handleButtonClick = () => {
+    if (slotMachineResult) {
+      // If a category is revealed, trigger the onReveal function
+      onReveal(slotMachineResult);
+    } else {
+      // Handle the case when no category is revealed (you can display a message)
+      console.log("No category revealed");
+    }
   };
 
   return (
@@ -24,12 +35,19 @@ const Modal = ({ isOpen, onClose }) => {
             exit={{ y: "10vh" }}
             className={styles.modalContent}
           >
-            <button onClick={onClose} className="modalCloseButton">X</button>
-            
-            <h2>Spin to discover your next meal!</h2>
-            
-            {/* Replace AnimatedCards with SlotMachine */}
-            <SlotMachine onReveal={handleReveal} />
+            <button onClick={onClose} className={styles.modalCloseButton}>&#10005; </button>
+
+            {slotMachineResult ? (
+              // If a category is revealed, show the result
+              <button onClick={handleButtonClick}>{slotMachineResult}</button>
+            ) : (
+              // If no category is revealed, show the slot machine
+              <>
+                <h2>Spin to discover your next meal!</h2>
+                {/* Replace AnimatedCards with SlotMachine */}
+                <SlotMachine onReveal={handleReveal} />
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}
