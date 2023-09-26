@@ -32,6 +32,10 @@ h5 {
   margin-bottom: 10px;
 }
 
+button {
+  cursor: pointer;
+}
+
 .App {
   min-height: 100vh;
   text-align: center;
@@ -167,6 +171,7 @@ h5 {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

@@ -5,24 +5,36 @@ import FoodOptionButton from "./FoodOptionButton";
 import "../App.css"
 import styles from "./FoodOptionButtons.module.css"
 import quizQuestions from "../data/quizQuestions";
+import Modal from './Modal/Modal';
 
 //Creates the Buttons component
-class FoodOptionButtons extends Component {
+class FoodOptionButtons extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            quizStep: "start", // Initial quiz step
-            currentQuestionId: 0,
-            disabledOptions: [],
+          isModalOpen: false  // State to control modal visibility
+          quizStep: "start", // Initial quiz step
+          currentQuestionId: 0,
+          disabledOptions: [],
         };
-    }
+      }
+    
+      // open spinner modal
+      openModal = () => {
+        this.setState({ isModalOpen: true });
+      };
+    
+      // close spinner modal
+      closeModal = () => {
+        this.setState({ isModalOpen: false });
+      };
 
-    handleClick = (type) => {
-        //generate a random type from the food choice array
-        if (type === "random") {
-            const randomNumber = Math.floor(Math.random() * foodChoices.length);
-            type = foodChoices[randomNumber];
-        }
+  handleClick = (type) => {
+      //generate a random type from the food choice array
+      if (type === "random"){
+          const randomNumber = Math.floor(Math.random() * foodChoices.length);
+          type = foodChoices[randomNumber];
+      }
         this.props.onButtonClick(type);
     }
 
@@ -79,7 +91,7 @@ class FoodOptionButtons extends Component {
                         <div>
                             <button
                                 className="button"
-                                onClick={() => this.handleClick("random")}
+                                onClick={this.openModal}
                                 style={{width: "55%"}}
                             >
                                 <h2>Surprise Me!</h2>
@@ -128,10 +140,16 @@ class FoodOptionButtons extends Component {
                 )}
 
                 <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
+
+                <Modal 
+                    isOpen={this.state.isModalOpen} 
+                    onClose={this.closeModal}
+                />
             </div>
 
 
         )
+        
     }
 }
 
