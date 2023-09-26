@@ -31,7 +31,7 @@
 
 .resultImageContainer {
     display: flex;
-    flex-direction: flex-end;
+    /* flex-direction: flex-end; */
 }
 
 .resultImage {
@@ -39,4 +39,21 @@
     height: 300px;
     object-fit: cover;
     border-radius: 15px;
+}
+
+.buttonD {
+    background-color: #dbdeff;
+    border: 8px solid white;
+    border-radius: 25px;
+    margin: 0.5%;
+    z-index: 2;
+}
+
+.results {
+    padding: 1.5%;
+    width: 33.33%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

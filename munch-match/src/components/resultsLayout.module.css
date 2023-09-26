@@ -21,3 +21,11 @@
     margin-top: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.buttonRL {
+    background-color: #dbdeff;
+    border: 8px solid white;
+    border-radius: 25px;
+    margin: 0.5%;
+    z-index: 2;
+}
