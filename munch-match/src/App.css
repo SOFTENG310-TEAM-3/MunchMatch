@@ -181,16 +181,6 @@ h5 {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.quiz {
-  display: flex;
-  justifyContent: space-between;
-  display: none;
-}
-
-#stopQuiz {
-  display: none;
-}
-
 .stopButton {
   background-color: #E38681;
   border: 8px solid white;
@@ -198,6 +188,10 @@ h5 {
   z-index: 2;
 }
 
-.disabled img {
+.disabled {
   filter: grayscale(1);
+}
+
+.disabledButton {
+  background-color: darkgray;
 }

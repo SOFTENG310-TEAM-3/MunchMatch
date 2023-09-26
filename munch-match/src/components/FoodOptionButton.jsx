@@ -1,7 +1,10 @@
-const FoodOptionButton = ({ foodOption, onClick }) => {
+const FoodOptionButton = ({ imageDisabledStyle, buttonDisabledStyle, foodOption, disabled, onClick }) => {
+    const buttonClassNames = "button " + buttonDisabledStyle;
+    const imageClassNames = "food " + imageDisabledStyle;
+
     return (
-        <button className="button" onClick={() => onClick(foodOption)}>
-            <img className="food" src={require(`../images/${foodOption}.png`)} alt={foodOption} />
+        <button className={buttonClassNames} disabled={disabled} onClick={() => onClick(foodOption)}>
+            <img className={imageClassNames} src={require(`../images/${foodOption}.png`)} alt={foodOption} />
         </button>
     );
 }
