@@ -99,8 +99,6 @@ class Results extends Component{
             <button className="button" onClick={() => this.onBackClick()} style={{width: "30%"}}><h3>Choose Again</h3></button>
             </div>
         </div>  
-        
-        
         );
     }
 }
