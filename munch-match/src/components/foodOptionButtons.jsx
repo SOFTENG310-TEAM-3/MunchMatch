@@ -4,9 +4,27 @@ import foodChoices from "../data/categories";
 import FoodOptionButton from "./FoodOptionButton";
 import "../App.css"
 import styles from "./FoodOptionButtons.module.css"
+import Modal from './Modal/Modal';
 
 //Creates the Buttons component
 class FoodOptionButtons extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          isModalOpen: false  // State to control modal visibility
+        };
+      }
+    
+      // open spinner modal
+      openModal = () => {
+        this.setState({ isModalOpen: true });
+      };
+    
+      // close spinner modal
+      closeModal = () => {
+        this.setState({ isModalOpen: false });
+      };
+
   handleClick = (type) => {
       //generate a random type from the food choice array
       if (type === "random"){
@@ -94,7 +112,7 @@ class FoodOptionButtons extends Component{
                 </div>
                 <div id="startDiv">
                     <div>
-                      <button className="button" onClick={() => this.handleClick("random")} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
+                    <button className="button" onClick={this.openModal} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
                     </div>
                     <div>
                         <button className="button" onClick={() => this.onQuizButtonClick("quizStart")} style={{width: "55%"}}><h2>Take the Quiz!</h2></button>
@@ -117,10 +135,16 @@ class FoodOptionButtons extends Component{
                     <button className="stopButton" onClick={() => this.onQuizButtonClick("")} style={{width: "20%"}}><h3>Stop Quiz</h3></button>
                 </div>
                 <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
+
+                <Modal 
+                    isOpen={this.state.isModalOpen} 
+                    onClose={this.closeModal}
+                />
             </div>
 
 
         )
+        
     }
 }
 
