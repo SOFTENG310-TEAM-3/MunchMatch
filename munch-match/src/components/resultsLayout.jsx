@@ -3,6 +3,7 @@ import { Component } from "react";
 import "../App.css"
 import ResultCard from "./resultCard"
 import { getResults } from "../services/MapsService.js"
+import styles from "./resultsLayout.module.css"
 
 //Creates the google map variable
 const google = window.google; 
@@ -83,20 +84,20 @@ class Results extends Component{
 
         return(
         //To export multiple components, surround it with a <div> tag
-        <div className="resultsContainer">
-            <div className="resultsRow">
+        <div className={styles.resultsContainer}>
+            <div className={styles.resultsRow}>
                 <ResultCard result={results[0]}/>
                 <ResultCard result={results[1]}/>
                 <ResultCard result={results[2]}/>
             </div>
-            <div className="resultsRow">
+            <div className={styles.resultsRow}>
                 <ResultCard result={results[3]}/>
                 <ResultCard result={results[4]}/>
                 <ResultCard result={results[5]}/>
             </div>
-            <div id="map" className="map"></div>
+            <div id="map" className={styles.map}></div>
             <div>
-            <button className="button" onClick={() => this.onBackClick()} style={{width: "30%"}}><h3>Choose Again</h3></button>
+            <button className={styles.buttonResultLayout} onClick={() => this.onBackClick()} style={{width: "30%"}}><h3>Choose Again</h3></button>
             </div>
         </div>  
         );
