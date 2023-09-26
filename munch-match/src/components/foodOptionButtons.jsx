@@ -6,13 +6,13 @@ import "../App.css"
 import styles from "./FoodOptionButtons.module.css"
 
 //Creates the Buttons component
-class FoodOptionButtons extends Component{
-  handleClick = (type) => {
-      //generate a random type from the food choice array
-      if (type === "random"){
-          const randomNumber = Math.floor(Math.random() * foodChoices.length);
-          type = foodChoices[randomNumber];
-      }
+class FoodOptionButtons extends Component {
+    handleClick = (type) => {
+        //generate a random type from the food choice array
+        if (type === "random") {
+            const randomNumber = Math.floor(Math.random() * foodChoices.length);
+            type = foodChoices[randomNumber];
+        }
         this.props.onButtonClick(type);
     }
 
@@ -88,35 +88,35 @@ class FoodOptionButtons extends Component{
             //To export multiple components, surround it with a <div> tag
             <div>
                 <div className={styles.buttonsContainer}>
-                  {foodChoices.map((choice, index) => (
-                    <FoodOptionButton key={index} foodOption={choice} onClick={this.handleClick} />
-                  ))}
+                    {foodChoices.map((choice, index) => (
+                        <FoodOptionButton key={index} foodOption={choice} onClick={this.handleClick} />
+                    ))}
                 </div>
                 <div id="startDiv">
                     <div>
-                      <button className="button" onClick={() => this.handleClick("random")} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
+                        <button className={styles.button} onClick={() => this.handleClick("random")} style={{ width: "55%" }}><h2>Surprise Me!</h2></button>
                     </div>
                     <div>
-                        <button className="button" onClick={() => this.onQuizButtonClick("quizStart")} style={{width: "55%"}}><h2>Take the Quiz!</h2></button>
+                        <button className={styles.button} onClick={() => this.onQuizButtonClick("quizStart")} style={{ width: "55%" }}><h2>Take the Quiz!</h2></button>
                     </div>
                 </div>
-                <div className="quiz" id="questionOne">
+                <div className={styles.quiz} id="questionOne">
                     <h3>Sweet or Savoury?</h3>
-                    <button className="button" onClick={() => this.onQuizButtonClick("sweet")} style={{width: "30%"}}><h2>Sweet</h2></button>
-                    <button className="button" onClick={() => this.onQuizButtonClick("savoury")} style={{width: "30%"}}><h2>Savoury</h2></button>
+                    <button className={styles.button} onClick={() => this.onQuizButtonClick("sweet")} style={{ width: "30%" }}><h2>Sweet</h2></button>
+                    <button className={styles.button} onClick={() => this.onQuizButtonClick("savoury")} style={{ width: "30%" }}><h2>Savoury</h2></button>
                 </div>
-                <div className="quiz" id="questionTwo">
+                <div className={styles.quiz} id="questionTwo">
                     <h3>Big Feed or Little Treat?</h3>
-                    <button className="button" onClick={() => this.onQuizButtonClick("bigFeed")} style={{width: "30%"}}><h2>Big Feed</h2></button>
-                    <button className="button" onClick={() => this.onQuizButtonClick("littleTreat")} style={{width: "30%"}}><h2>Little Treat</h2></button>
+                    <button className={styles.button} onClick={() => this.onQuizButtonClick("bigFeed")} style={{ width: "30%" }}><h2>Big Feed</h2></button>
+                    <button className={styles.button} onClick={() => this.onQuizButtonClick("littleTreat")} style={{ width: "30%" }}><h2>Little Treat</h2></button>
                 </div>
-                <div className="quiz" id="quizFinish">
+                <div className={styles.quiz} id="quizFinish">
                     <h2>Quiz Finished</h2>
                 </div>
-                <div id="stopQuiz" style={{marginTop: '15px'}}>
-                    <button className="stopButton" onClick={() => this.onQuizButtonClick("")} style={{width: "20%"}}><h3>Stop Quiz</h3></button>
+                <div className={styles.stopQuiz} style={{ marginTop: '15px' }}>
+                    <button className={styles.stopButton} onClick={() => this.onQuizButtonClick("")} style={{ width: "20%" }}><h3>Stop Quiz</h3></button>
                 </div>
-                <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
+                <p className={styles.attribution}>Image by catalyststuff and rocketpixel on Freepik</p>
             </div>
 
 

@@ -158,3 +158,12 @@ h5 {
 .disabled img {
   filter: grayscale(1);
 }
+
+.button {
+  background-color: #dbdeff;
+  border: 8px solid white;
+  border-radius: 25px;
+  margin: 0.5%;
+  z-index: 2;
+  cursor: pointer;
+}
