@@ -120,7 +120,7 @@ class FoodOptionButtons extends Component {
                             </button>
                         ))}
                         <div style={{ marginTop: '15px' }}>
-                            <button className="stopButton" onClick={() => this.handleQuizEnd()} style={{ width: "20%" }}><h3>Stop Quiz</h3></button>
+                            <button className={styles.stopButton} onClick={() => this.handleQuizEnd()} style={{ width: "20%" }}><h3>Stop Quiz</h3></button>
                         </div>
                     </div>
                 )}
@@ -131,7 +131,7 @@ class FoodOptionButtons extends Component {
                             <h2>Quiz Finished</h2>
                         </div>
                         <div style={{ marginTop: '15px' }}>
-                            <button className="stopButton" onClick={() => this.handleQuizEnd()} style={{ width: "20%" }}><h3>Reset Questions</h3></button>
+                            <button className={styles.stopButton} onClick={() => this.handleQuizEnd()} style={{ width: "20%" }}><h3>Reset Questions</h3></button>
                         </div>
                     </div>
                 )}
