@@ -8,33 +8,33 @@ import quizQuestions from "../data/quizQuestions";
 import Modal from './Modal/Modal';
 
 //Creates the Buttons component
-class FoodOptionButtons extends Component{
+class FoodOptionButtons extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          isModalOpen: false,  // State to control modal visibility
-          quizStep: "start", // Initial quiz step
-          currentQuestionId: 0,
-          disabledOptions: [],
+            isModalOpen: false,  // State to control modal visibility
+            quizStep: "start", // Initial quiz step
+            currentQuestionId: 0,
+            disabledOptions: [],
         };
-      }
-    
-      // open spinner modal
-      openModal = () => {
-        this.setState({ isModalOpen: true });
-      };
-    
-      // close spinner modal
-      closeModal = () => {
-        this.setState({ isModalOpen: false });
-      };
+    }
 
-  handleClick = (type) => {
-      //generate a random type from the food choice array
-      if (type === "random"){
-          const randomNumber = Math.floor(Math.random() * foodChoices.length);
-          type = foodChoices[randomNumber];
-      }
+    // open spinner modal
+    openModal = () => {
+        this.setState({isModalOpen: true});
+    };
+
+    // close spinner modal
+    closeModal = () => {
+        this.setState({isModalOpen: false});
+    };
+
+    handleClick = (type) => {
+        //generate a random type from the food choice array
+        if (type === "random") {
+            const randomNumber = Math.floor(Math.random() * foodChoices.length);
+            type = foodChoices[randomNumber];
+        }
         this.props.onButtonClick(type);
     }
 
@@ -43,11 +43,11 @@ class FoodOptionButtons extends Component{
         const nextQuestionId = currentQuestionId + 1;
 
         // Move to the next question if available
-        if (currentQuestionId < quizQuestions.steps.length - 1) {
-            this.disableFoodOptions(quizQuestions.steps[currentQuestionId].options.find((option) => option.answer === answer).disables);
+        if (currentQuestionId < quizQuestions.length - 1) {
+            this.disableFoodOptions(quizQuestions[currentQuestionId].options.find((option) => option.answer === answer).disables);
             this.setState({currentQuestionId: nextQuestionId, quizStep: `question${nextQuestionId}`});
         } else {
-            this.disableFoodOptions(quizQuestions.steps[currentQuestionId].options.find((option) => option.answer === answer).disables);
+            this.disableFoodOptions(quizQuestions[currentQuestionId].options.find((option) => option.answer === answer).disables);
             // Finish the quiz since there are no more questions
             this.setState({quizStep: "finish"});
         }
@@ -70,7 +70,7 @@ class FoodOptionButtons extends Component{
 
     render() {
         const {quizStep, currentQuestionId, disabledOptions} = this.state;
-        const currentQuestion = quizQuestions.steps[currentQuestionId];
+        const currentQuestion = quizQuestions[currentQuestionId];
 
         return (
             //To export multiple components, surround it with a <div> tag
@@ -78,12 +78,9 @@ class FoodOptionButtons extends Component{
                 <div className={styles.buttonsContainer}>
                     {foodChoices.map((choice, index) => {
                         const isDisabled = disabledOptions.includes(choice);
-                        const buttonDisabledStyle = isDisabled ? "disabledButton" : "";
-                        const imageDisabledStyle = isDisabled ? "disabled" : "";
 
                         return (
-                            <FoodOptionButton imageDisabledStyle={imageDisabledStyle} buttonDisabledStyle={buttonDisabledStyle} key={index} foodOption={choice}
-                                              disabled={isDisabled} onClick={this.handleClick}/>)
+                            <FoodOptionButton key={index} foodOption={choice} disabled={isDisabled} onClick={this.handleClick}/>)
                     })}
                 </div>
                 {quizStep === "start" && (
@@ -141,15 +138,15 @@ class FoodOptionButtons extends Component{
 
                 <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
 
-                <Modal 
-                    isOpen={this.state.isModalOpen} 
+                <Modal
+                    isOpen={this.state.isModalOpen}
                     onClose={this.closeModal}
                 />
             </div>
 
 
         )
-        
+
     }
 }
 
