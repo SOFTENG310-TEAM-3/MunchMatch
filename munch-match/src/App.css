@@ -122,15 +122,13 @@ button {
   }
 }
 
-.quiz {
-  display: flex;
-  justifyContent: space-between;
-  display: none;
-}
-
-#stopQuiz {
-  display: none;
-}
+.map {
+  height: 400px;
+  border: 8px solid white;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
 .stopButton {
   background-color: #E38681;
@@ -139,6 +137,10 @@ button {
   z-index: 2;
 }
 
-.disabled img {
+.disabled {
   filter: grayscale(1);
+}
+
+.disabledButton {
+  background-color: darkgray;
 }
