@@ -47,7 +47,7 @@ class Results extends Component{
             // Make sure the results are sorted by rating 
             const sortedResults = results.sort((r1, r2) => r2.rating - r1.rating);
             this.setState({ results: sortedResults });
-            // Get the coordinates of the restaurannts and initialize our embedded map
+            // Get the coordinates of the restaurants and initialize our embedded map
             const locations = results.map(result => {
               return {
                 latitude: result.latitude, 
