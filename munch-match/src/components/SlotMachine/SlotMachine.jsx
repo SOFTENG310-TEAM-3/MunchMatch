@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import styles from './SlotMachine.module.css';
+import Lottie from 'react-lottie';
+import animationData from './data.json';  // Update the path accordingly
 
-// Dummy import, replace with your actual images
 import bakery from '../../images/bakery.png';
 import burger from '../../images/burger.png';
 import cafe from '../../images/cafe.png';
@@ -12,12 +13,25 @@ import fruit from '../../images/fruit.png';
 import pizza from '../../images/pizza.png';
 import sushi from '../../images/sushi.png';
 
-const SlotMachine = () => {
+const SlotMachine = ({onReveal}) => {
+  console.log(" is function SLOT ", typeof onReveal);
+
   const controls = useAnimation();
   const [isSpinning, setIsSpinning] = useState(false);
   const [results, setResults] = useState([null, null, null]);
   const [winnerCategory, setWinnerCategory] = useState(null);
   const [hasSpunOnce, setHasSpunOnce] = useState(false);
+  const [playConfetti, setPlayConfetti] = useState(false); 
+
+  const confettiOptions = {
+    loop: playConfetti,
+    autoplay: playConfetti,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+
 
   const foodItems = useMemo(() => [
     { name: 'bakery', image: bakery },
@@ -42,8 +56,10 @@ const SlotMachine = () => {
       if (winningImage) {
         const winningItem = foodItems.find(item => item.image === winningImage);
         setWinnerCategory(winningItem ? winningItem.name : null);
+        setPlayConfetti(true);
       } else {
         setWinnerCategory(null);
+        setPlayConfetti(false);
       }
     };
 
@@ -52,24 +68,26 @@ const SlotMachine = () => {
     }
   }, [isSpinning, results, foodItems]);
 
+
+
   const handleSpin = async () => {
     setIsSpinning(true);
     setWinnerCategory(null);
     setHasSpunOnce(true)
 
     const numPoints = 500;
-  const yPoints = Array.from({ length: numPoints }, (_, i) => {
-    return Math.sin((i / numPoints) * (2 * Math.PI)) * 50;
-  });
+    const yPoints = Array.from({ length: numPoints }, (_, i) => {
+      return Math.sin((i / numPoints) * (2 * Math.PI)) * 50;
+    });
 
-  controls.start({
-    y: yPoints,
-    transition: {
-      duration: 3,
-      ease: 'linear',
-      times: Array.from({ length: numPoints }, (_, i) => i / (numPoints - 1)),
-    },
-  });
+    controls.start({
+      y: yPoints,
+      transition: {
+        duration: 3,
+        ease: 'linear',
+        times: Array.from({ length: numPoints }, (_, i) => i / (numPoints - 1)),
+      },
+    });
 
     const newResults = [];
     const spinInterval = setInterval(() => {
@@ -88,6 +106,14 @@ const SlotMachine = () => {
 
   return (
     <div className={styles['spinner-container']}>
+      <Lottie
+        options={confettiOptions}
+        height={'100%'}
+        width={'100%'}
+        isStopped={!playConfetti}
+        isPaused={!playConfetti}
+      />
+
       <div className={styles.reels}>
         {results.map((result, index) => (
           <motion.div key={index} className={styles.icons} animate={controls}>
@@ -96,8 +122,8 @@ const SlotMachine = () => {
         ))}
       </div>
       {winnerCategory ? (
-        <div className={styles.searchButton} >
-           Winner: {winnerCategory}!!
+        <div className={styles.searchButton}>
+          Winner: {winnerCategory}!!
         </div>
       ) : (!isSpinning && hasSpunOnce) ? (
         <div className={styles.spinAgain}>Spin again!</div>
@@ -109,8 +135,18 @@ const SlotMachine = () => {
       >
         {isSpinning ? 'Spinning...' : 'Spin'}
       </button>
+      {winnerCategory && (
+       <button
+       className={styles['spin-button']}
+       onClick={() => onReveal(winnerCategory)} 
+     >
+       Take me there
+     </button>
+      )}
     </div>
   );
 };
+
+
 
 export default SlotMachine;

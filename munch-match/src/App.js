@@ -10,12 +10,20 @@ function App() {
   const [showResults, setShowResults] = useState(false);
   const [selectedType, setSelectedType] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false); // State for controlling the modal
+  
 
   const onButtonClick = (type) => {
     setShowResults(true);
     setSelectedType(type);
-    setIsModalOpen(true); // Open the modal when the "Surprise Me" button is clicked
+    setIsModalOpen(false); 
   };
+  const onReveal = (type) => {
+    console.log('type', type);
+    setShowResults(true);
+    setSelectedType(type);
+    setIsModalOpen(false);
+  };
+  
 
   const onBackClick = () => {
     setShowResults(false);
@@ -26,6 +34,9 @@ function App() {
     setIsModalOpen(false); // Close the modal
   };
 
+  console.log('App onReveal:', typeof onReveal);
+  console.log('App onReveal:', typeof closeModal);
+  
   return (
     <div className="App">
       <SkeletonTheme baseColor="#f2f2f2" highlightColor="#444">
@@ -38,7 +49,7 @@ function App() {
         ) : (
           <>
             <FoodOptionButtons onButtonClick={onButtonClick} />
-            <Modal isOpen={isModalOpen} onClose={closeModal} onReveal={onButtonClick} />
+            <Modal isOpen={isModalOpen} onClose={closeModal} onReveal={onReveal}/>
           </>
         )}
         <img className="fork" src={fork} alt="fork"></img>
