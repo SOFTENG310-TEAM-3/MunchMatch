@@ -20,6 +20,7 @@ function App() {
   const onBackClick = () => {
     setShowResults(false);
     setSelectedType('');
+    setIsModalOpen(false);
   };
 
   const closeModal = () => {
