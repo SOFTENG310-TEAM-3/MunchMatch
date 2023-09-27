@@ -7,30 +7,35 @@ import styles from "./FoodOptionButtons.module.css"
 import Modal from './Modal/Modal';
 
 //Creates the Buttons component
-class FoodOptionButtons extends Component{
+class FoodOptionButtons extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          isModalOpen: false  // State to control modal visibility
+            isModalOpen: false  // State to control modal visibility
         };
-      }
-    
-      // open spinner modal
-      openModal = () => {
+    }
+
+    // open spinner modal
+    openModal = () => {
         this.setState({ isModalOpen: true });
-      };
-    
-      // close spinner modal
-      closeModal = () => {
-        this.setState({ isModalOpen: false });
+    };
+
+    onReveal = (type) => {
+        console.log('type', type);
+        this.props.onButtonClick(type);
       };
 
-  handleClick = (type) => {
-      //generate a random type from the food choice array
-      if (type === "random"){
-          const randomNumber = Math.floor(Math.random() * foodChoices.length);
-          type = foodChoices[randomNumber];
-      }
+    // close spinner modal
+    closeModal = () => {
+        this.setState({ isModalOpen: false });
+    };
+
+    handleClick = (type) => {
+        //generate a random type from the food choice array
+        if (type === "random") {
+            const randomNumber = Math.floor(Math.random() * foodChoices.length);
+            type = foodChoices[randomNumber];
+        }
         this.props.onButtonClick(type);
     }
 
@@ -106,45 +111,46 @@ class FoodOptionButtons extends Component{
             //To export multiple components, surround it with a <div> tag
             <div>
                 <div className={styles.buttonsContainer}>
-                  {foodChoices.map((choice, index) => (
-                    <FoodOptionButton key={index} foodOption={choice} onClick={this.handleClick} />
-                  ))}
+                    {foodChoices.map((choice, index) => (
+                        <FoodOptionButton key={index} foodOption={choice} onClick={this.handleClick} />
+                    ))}
                 </div>
                 <div id="startDiv">
                     <div>
-                    <button className="button" onClick={this.openModal} style={{width: "55%"}}><h2>Surprise Me!</h2></button>
+                        <button className="button" onClick={this.openModal} style={{ width: "55%" }}><h2>Surprise Me!</h2></button>
                     </div>
                     <div>
-                        <button className="button" onClick={() => this.onQuizButtonClick("quizStart")} style={{width: "55%"}}><h2>Take the Quiz!</h2></button>
+                        <button className="button" onClick={() => this.onQuizButtonClick("quizStart")} style={{ width: "55%" }}><h2>Take the Quiz!</h2></button>
                     </div>
                 </div>
                 <div className="quiz" id="questionOne">
                     <h3>Sweet or Savoury?</h3>
-                    <button className="button" onClick={() => this.onQuizButtonClick("sweet")} style={{width: "30%"}}><h2>Sweet</h2></button>
-                    <button className="button" onClick={() => this.onQuizButtonClick("savoury")} style={{width: "30%"}}><h2>Savoury</h2></button>
+                    <button className="button" onClick={() => this.onQuizButtonClick("sweet")} style={{ width: "30%" }}><h2>Sweet</h2></button>
+                    <button className="button" onClick={() => this.onQuizButtonClick("savoury")} style={{ width: "30%" }}><h2>Savoury</h2></button>
                 </div>
                 <div className="quiz" id="questionTwo">
                     <h3>Big Feed or Little Treat?</h3>
-                    <button className="button" onClick={() => this.onQuizButtonClick("bigFeed")} style={{width: "30%"}}><h2>Big Feed</h2></button>
-                    <button className="button" onClick={() => this.onQuizButtonClick("littleTreat")} style={{width: "30%"}}><h2>Little Treat</h2></button>
+                    <button className="button" onClick={() => this.onQuizButtonClick("bigFeed")} style={{ width: "30%" }}><h2>Big Feed</h2></button>
+                    <button className="button" onClick={() => this.onQuizButtonClick("littleTreat")} style={{ width: "30%" }}><h2>Little Treat</h2></button>
                 </div>
                 <div className="quiz" id="quizFinish">
                     <h2>Quiz Finished</h2>
                 </div>
-                <div id="stopQuiz" style={{marginTop: '15px'}}>
-                    <button className="stopButton" onClick={() => this.onQuizButtonClick("")} style={{width: "20%"}}><h3>Stop Quiz</h3></button>
+                <div id="stopQuiz" style={{ marginTop: '15px' }}>
+                    <button className="stopButton" onClick={() => this.onQuizButtonClick("")} style={{ width: "20%" }}><h3>Stop Quiz</h3></button>
                 </div>
                 <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
 
-                <Modal 
-                    isOpen={this.state.isModalOpen} 
+                <Modal
+                    isOpen={this.state.isModalOpen}
                     onClose={this.closeModal}
+                    onReveal={this.onReveal}
                 />
             </div>
 
 
         )
-        
+
     }
 }
 

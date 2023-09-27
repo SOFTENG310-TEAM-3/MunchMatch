@@ -4,8 +4,6 @@ import styles from './Modal.module.css';
 import SlotMachine from '../SlotMachine/SlotMachine';
 
 const Modal = ({ isOpen, onClose, onReveal}) => {
-  console.log(" is function REVEAL ", typeof onReveal);
-  console.log(" is function CLOSE ", typeof onClose);
 
   const [slotMachineResult, setSlotMachineResult] = useState(null);
   

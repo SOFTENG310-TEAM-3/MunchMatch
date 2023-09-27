@@ -34,8 +34,6 @@ function App() {
     setIsModalOpen(false); // Close the modal
   };
 
-  console.log('App onReveal:', typeof onReveal);
-  console.log('App onReveal:', typeof closeModal);
   
   return (
     <div className="App">
@@ -49,7 +47,6 @@ function App() {
         ) : (
           <>
             <FoodOptionButtons onButtonClick={onButtonClick} />
-            <Modal isOpen={isModalOpen} onClose={closeModal} onReveal={onReveal}/>
           </>
         )}
         <img className="fork" src={fork} alt="fork"></img>

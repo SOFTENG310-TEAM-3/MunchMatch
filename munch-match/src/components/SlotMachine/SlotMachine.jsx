@@ -14,7 +14,6 @@ import pizza from '../../images/pizza.png';
 import sushi from '../../images/sushi.png';
 
 const SlotMachine = ({onReveal}) => {
-  console.log(" is function SLOT ", typeof onReveal);
 
   const controls = useAnimation();
   const [isSpinning, setIsSpinning] = useState(false);
@@ -23,6 +22,8 @@ const SlotMachine = ({onReveal}) => {
   const [hasSpunOnce, setHasSpunOnce] = useState(false);
   const [playConfetti, setPlayConfetti] = useState(false); 
 
+
+  // how confetti is displayed
   const confettiOptions = {
     loop: playConfetti,
     autoplay: playConfetti,
@@ -31,7 +32,6 @@ const SlotMachine = ({onReveal}) => {
       preserveAspectRatio: 'xMidYMid slice',
     },
   };
-
 
   const foodItems = useMemo(() => [
     { name: 'bakery', image: bakery },
@@ -44,6 +44,7 @@ const SlotMachine = ({onReveal}) => {
     { name: 'sushi', image: sushi },
   ], []);
 
+  // checks for a match with two or more catergories
   useEffect(() => {
     const checkForMatch = () => {
       const foundItems = results.reduce((acc, curr) => {
@@ -53,6 +54,7 @@ const SlotMachine = ({onReveal}) => {
 
       const winningImage = Object.keys(foundItems).find(key => foundItems[key] >= 2);
 
+      // displays winning items and sets off confetti
       if (winningImage) {
         const winningItem = foodItems.find(item => item.image === winningImage);
         setWinnerCategory(winningItem ? winningItem.name : null);
@@ -126,7 +128,7 @@ const SlotMachine = ({onReveal}) => {
           Winner: {winnerCategory}!!
         </div>
       ) : (!isSpinning && hasSpunOnce) ? (
-        <div className={styles.spinAgain}>Spin again!</div>
+        <div className={styles.searchButton}>Spin again!</div>
       ) : null}
       <button
         className={`${styles['spin-button']} ${isSpinning ? styles['spinning'] : ''}`}
