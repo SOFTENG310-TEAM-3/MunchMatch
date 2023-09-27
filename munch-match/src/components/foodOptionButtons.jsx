@@ -1,5 +1,5 @@
 //Tells react that this is an component
-import {Component} from "react";
+import { Component } from "react";
 import foodChoices from "../data/categories";
 import FoodOptionButton from "./FoodOptionButton";
 import "../App.css"
@@ -21,12 +21,12 @@ class FoodOptionButtons extends Component {
 
     // open spinner modal
     openModal = () => {
-        this.setState({isModalOpen: true});
+        this.setState({ isModalOpen: true });
     };
 
     // close spinner modal
     closeModal = () => {
-        this.setState({isModalOpen: false});
+        this.setState({ isModalOpen: false });
     };
 
     handleClick = (type) => {
@@ -39,37 +39,37 @@ class FoodOptionButtons extends Component {
     }
 
     handleQuizAnswerClick = (answer) => {
-        const {currentQuestionId} = this.state;
+        const { currentQuestionId } = this.state;
         const nextQuestionId = currentQuestionId + 1;
 
         // Move to the next question if available
         if (currentQuestionId < quizQuestions.length - 1) {
             this.disableFoodOptions(quizQuestions[currentQuestionId].options.find((option) => option.answer === answer).disables);
-            this.setState({currentQuestionId: nextQuestionId, quizStep: `question${nextQuestionId}`});
+            this.setState({ currentQuestionId: nextQuestionId, quizStep: `question${nextQuestionId}` });
         } else {
             this.disableFoodOptions(quizQuestions[currentQuestionId].options.find((option) => option.answer === answer).disables);
             // Finish the quiz since there are no more questions
-            this.setState({quizStep: "finish"});
+            this.setState({ quizStep: "finish" });
         }
     };
 
     handleQuizStart = () => {
-        this.setState({quizStep: "question0"});
+        this.setState({ quizStep: "question0" });
     };
 
     handleQuizEnd = () => {
-        this.setState({quizStep: "start", currentQuestionId: 0, disabledOptions: []});
+        this.setState({ quizStep: "start", currentQuestionId: 0, disabledOptions: [] });
     }
 
     disableFoodOptions = (foodOptions) => {
-        const {disabledOptions} = this.state;
+        const { disabledOptions } = this.state;
         const updatedDisabledOptions = [...disabledOptions, ...foodOptions];
 
-        this.setState({disabledOptions: updatedDisabledOptions});
+        this.setState({ disabledOptions: updatedDisabledOptions });
     }
 
     render() {
-        const {quizStep, currentQuestionId, disabledOptions} = this.state;
+        const { quizStep, currentQuestionId, disabledOptions } = this.state;
         const currentQuestion = quizQuestions[currentQuestionId];
 
         return (
@@ -80,25 +80,25 @@ class FoodOptionButtons extends Component {
                         const isDisabled = disabledOptions.includes(choice);
 
                         return (
-                            <FoodOptionButton key={index} foodOption={choice} disabled={isDisabled} onClick={this.handleClick}/>)
+                            <FoodOptionButton key={index} foodOption={choice} disabled={isDisabled} onClick={this.handleClick} />)
                     })}
                 </div>
                 {quizStep === "start" && (
                     <div>
                         <div>
                             <button
-                                className="button"
+                                className={styles.button}
                                 onClick={this.openModal}
-                                style={{width: "55%"}}
+                                style={{ width: "55%" }}
                             >
                                 <h2>Surprise Me!</h2>
                             </button>
                         </div>
                         <div>
                             <button
-                                className="button"
+                                className={styles.button}
                                 onClick={this.handleQuizStart}
-                                style={{width: "55%"}}
+                                style={{ width: "55%" }}
                             >
                                 <h2>Take the Quiz!</h2>
                             </button>
@@ -111,16 +111,16 @@ class FoodOptionButtons extends Component {
                         <h3>{currentQuestion.question}</h3>
                         {currentQuestion.options.map((option, index) => (
                             <button
-                                className="button"
+                                className={styles.button}
                                 key={index}
                                 onClick={() => this.handleQuizAnswerClick(option.answer)}
-                                style={{width: "30%"}}
+                                style={{ width: "30%" }}
                             >
                                 <h2>{option.answer}</h2>
                             </button>
                         ))}
-                        <div style={{marginTop: '15px'}}>
-                            <button className="stopButton" onClick={() => this.handleQuizEnd()} style={{width: "20%"}}><h3>Stop Quiz</h3></button>
+                        <div style={{ marginTop: '15px' }}>
+                            <button className={styles.stopButton} onClick={() => this.handleQuizEnd()} style={{ width: "20%" }}><h3>Stop Quiz</h3></button>
                         </div>
                     </div>
                 )}
@@ -130,13 +130,13 @@ class FoodOptionButtons extends Component {
                         <div>
                             <h2>Quiz Finished</h2>
                         </div>
-                        <div style={{marginTop: '15px'}}>
-                            <button className="stopButton" onClick={() => this.handleQuizEnd()} style={{width: "20%"}}><h3>Reset Questions</h3></button>
+                        <div style={{ marginTop: '15px' }}>
+                            <button className={styles.stopButton} onClick={() => this.handleQuizEnd()} style={{ width: "20%" }}><h3>Reset Questions</h3></button>
                         </div>
                     </div>
                 )}
 
-                <p className="attribution">Image by catalyststuff and rocketpixel on Freepik</p>
+                <p className={styles.attribution}>Image by catalyststuff and rocketpixel on Freepik</p>
 
                 <Modal
                     isOpen={this.state.isModalOpen}
