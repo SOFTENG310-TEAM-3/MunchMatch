@@ -97,6 +97,10 @@ button {
   }
 }
 
-.disabled img {
+.disabled {
   filter: grayscale(1);
+}
+
+.disabledButton {
+  background-color: darkgray;
 }
