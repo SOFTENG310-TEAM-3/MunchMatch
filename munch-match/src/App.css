@@ -72,13 +72,6 @@ button {
   justify-content: space-between;
 }
 
-.food {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  overflow: hidden;
-}
-
 .surprise {
   display: block;
 }
@@ -106,13 +99,4 @@ button {
 
 .disabled img {
   filter: grayscale(1);
-}
-
-.button {
-  background-color: #dbdeff;
-  border: 8px solid white;
-  border-radius: 25px;
-  margin: 0.5%;
-  z-index: 2;
-  cursor: pointer;
 }

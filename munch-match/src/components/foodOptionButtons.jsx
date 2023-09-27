@@ -136,8 +136,6 @@ class FoodOptionButtons extends Component {
                 </div>
                 <p className={styles.attribution}>Image by catalyststuff and rocketpixel on Freepik</p>
 
-                <p className={styles.attribution}>Image by catalyststuff and rocketpixel on Freepik</p>
-
                 <Modal
                     isOpen={this.state.isModalOpen}
                     onClose={this.closeModal}

@@ -1,7 +1,9 @@
+import styles from "./FoodOptionButton.module.css"
+
 const FoodOptionButton = ({ foodOption, onClick }) => {
     return (
-        <button className="button" onClick={() => onClick(foodOption)}>
-            <img className="food" src={require(`../images/${foodOption}.png`)} alt={foodOption} />
+        <button className={styles.button} onClick={() => onClick(foodOption)}>
+            <img className={styles.food} src={require(`../images/${foodOption}.png`)} alt={foodOption} />
         </button>
     );
 }
