@@ -1,0 +1,31 @@
+/* missing "button" (line 99) */
+
+.resultsContainer {
+    width: 80%;
+    margin: auto;
+}
+
+.resultsRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.map {
+    height: 400px;
+    border: 8px solid white;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.buttonResultLayout {
+    background-color: #dbdeff;
+    border: 8px solid white;
+    border-radius: 25px;
+    margin: 0.5%;
+    z-index: 2;
+}

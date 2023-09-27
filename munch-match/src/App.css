@@ -70,11 +70,6 @@ button {
   z-index: 2;
 }
 
-.resultsContainer {
-  width: 80%;
-  margin: auto;
-}
-
 .results {
   padding: 1.5%;
   width: 33.33%;
@@ -82,55 +77,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.resultsRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-.resultsHeader {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  text-align: left;
-  gap: 5px;
-}
-
-.actionContainer {
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  width: 100%;
-  align-items: center;
-}
-
-.actionButton {
-  background-color: white;
-  border: 2px solid black;
-  border-radius: 50px;
-  text-align: center;
-  flex: 1;
-}
-
-.infoContainer {
-  text-align: left;
-}
-
-.resultImageContainer {
-  display: flex;
-  flex-direction: flex-end;
-}
-
-.resultImage {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 15px;
 }
 
 .food {
@@ -152,7 +98,6 @@ button {
 .emptyStar {
   color: gray;
 }
-
 .attribution {
   position: fixed;
   bottom: 0px;
@@ -184,7 +129,6 @@ button {
   margin-bottom: 20px;
   margin-top: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 .stopButton {
   background-color: #E38681;
