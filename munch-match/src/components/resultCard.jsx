@@ -1,9 +1,11 @@
 import Rating from "./rating";
+import ShareModal from "./ShareModal/ShareModal";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import styles from "./resultCard.module.css"
 import "../App.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
 
 const shareIcon = {
     prefix: 'fas',
@@ -19,6 +21,16 @@ const shareIcon = {
 
 // This is the result card component, it takes in a Prop (result) from which we populate the card with the right information
 const ResultCard = ({ result }) => {
+    const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
+    const openShareModal = () => {
+        setIsShareModalOpen(true);
+    };
+
+    const closeShareModal = () => {
+        setIsShareModalOpen(false);
+    };
+
     return (
 
         <div className={`${styles.buttonResultCard} ${styles.results}`}>
@@ -31,7 +43,7 @@ const ResultCard = ({ result }) => {
             <div className={styles.actionContainer}>
                 <button className={styles.actionButton}><a href={result?.maps || <Skeleton />} target="_blank"><h4>DIRECTIONS</h4></a></button>
                 <button className={styles.actionButton}><a href={result?.website || <Skeleton />} target="_blank"><h4>WEBSITE</h4></a></button>
-                <button className={styles.shareButton}><a href={result?.website || <Skeleton />} target="_blank"><h4><FontAwesomeIcon icon={shareIcon} /></h4></a></button>
+                <button className={styles.shareButton} onClick={openShareModal}><h4><FontAwesomeIcon icon={shareIcon} /></h4></button>
             </div>
 
             {/*Further information about the place, rating, opening hours, address, phone number etc*/}
@@ -48,6 +60,11 @@ const ResultCard = ({ result }) => {
                 (<div className={styles.resultImageContainer}>
                     <img className={styles.resultImage} src={result?.picture?.getUrl()} alt="picture of restaurant"></img>
                 </div>)}
+
+            <ShareModal
+                isOpen={isShareModalOpen}
+                onClose={closeShareModal}
+            />
         </div>
     )
 
