@@ -32,22 +32,22 @@ const ShareModal = ({ isOpen, onClose }) => {
                             </div>
                         </div>
                         <h4>Link to share:</h4>
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingBottom: '40px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingBottom: '30px' }}>
                             <input className={styles.linkField} type="text" placeholder="Insert Link" readOnly />
-                            <button className={styles.copyButton}>Copy Link</button>
+                            <button className={styles.copyButton}><h4 style={{ margin: '0' }}>Copy Link</h4></button>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', margin: '20px' }}>
-                            <button className={styles.copyButton} style={{ width: "20%", margin: '20px' }}>
+                            <button className={styles.copyButton} style={{ width: "20%", margin: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                                 <FontAwesomeIcon icon={faFacebook} style={{ marginRight: '5px' }} />
-                                Facebook
+                                <h4 style={{ margin: '0' }}>Facebook</h4>
                             </button>
-                            <button className={styles.copyButton} style={{ width: "20%", margin: '20px' }}>
+                            <button className={styles.copyButton} style={{ width: "20%", margin: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                                 <FontAwesomeIcon icon={faTwitter} style={{ marginRight: '5px' }} />
-                                Twitter
+                                <h4 style={{ margin: '0' }}>Twitter</h4>
                             </button>
-                            <button className={styles.copyButton} style={{ width: "20%", margin: '20px' }}>
+                            <button className={styles.copyButton} style={{ width: "20%", margin: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                                 <FontAwesomeIcon icon={faGoogle} style={{ marginRight: '5px' }} />
-                                Gmail
+                                <h4 style={{ margin: '0' }}>Gmail</h4>
                             </button>
                         </div>
                     </motion.div>
