@@ -25,6 +25,14 @@
     flex: 1;
 }
 
+.shareButton {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50px;
+    text-align: center;
+    width: 60px;
+}
+
 .infoContainer {
     text-align: left;
 }
