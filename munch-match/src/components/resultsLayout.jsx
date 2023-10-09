@@ -16,6 +16,11 @@ class Results extends Component {
     state = {
         results: [],
         ratingRange: [0, 5],
+        priceRanges: {
+            1: true,
+            2: true,
+            3: true,
+        },
     };
 
     onBackClick = () => {
@@ -45,7 +50,7 @@ class Results extends Component {
 
     // Call our api with the users coordinates and set results
     fetchResults = (latitude, longitude) => {
-        getResults(this.props.type, latitude, longitude, this.state.ratingRange)
+        getResults(this.props.type, latitude, longitude, this.state.ratingRange, this.state.priceRanges)
             .then(results => {
                 // Make sure the results are sorted by rating
                 const sortedResults = results.sort((r1, r2) => r2.rating - r1.rating);
@@ -85,6 +90,13 @@ class Results extends Component {
         this.componentDidMount();
     }
 
+    updatePriceRange = (price) => {
+        const newPriceRanges = { ...this.state.priceRanges };
+        newPriceRanges[price] = !newPriceRanges[price];
+        this.setState({ priceRanges: newPriceRanges });
+        this.componentDidMount();
+    }
+
     render() {
         const {results, ratingRange} = this.state;
 
@@ -92,8 +104,38 @@ class Results extends Component {
             //To export multiple components, surround it with a <div> tag
             <div className={styles.resultsContainer}>
                 <h3>Rating Range</h3>
-                <RangeSlider min={0} max={5} defaultValue={[0, 5]} step={0.1} onInput={(range) => this.updateRating(range)}/>
+                <RangeSlider min={0} max={5} defaultValue={[0, 5]} step={0.1}
+                             onInput={(range) => this.updateRating(range)}/>
                 <p>{ratingRange[0]} - {ratingRange[1]} stars</p>
+
+                <h3>Price Range</h3>
+                <div style={{display: "inline-flex"}}>
+                    <div className={styles.priceCheckBoxes}>
+                        <input
+                            type="checkbox"
+                            checked={this.state.priceRanges["1"]}
+                            onChange={() => this.updatePriceRange("1")}
+                        />
+                        <label>$</label>
+                    </div>
+                    <div className={styles.priceCheckBoxes}>
+                        <input
+                            type="checkbox"
+                            checked={this.state.priceRanges["2"]}
+                            onChange={() => this.updatePriceRange("2")}
+                        />
+                        <label>$$</label>
+                    </div>
+                    <div className={styles.priceCheckBoxes}>
+                        <input
+                            type="checkbox"
+                            checked={this.state.priceRanges["3"]}
+                            onChange={() => this.updatePriceRange("3")}
+                        />
+                        <label>$$$</label>
+                    </div>
+                </div>
+
                 <div className={styles.resultsRow}>
                     <ResultCard result={results[0]}/>
                     <ResultCard result={results[1]}/>
@@ -103,11 +145,6 @@ class Results extends Component {
                     <ResultCard result={results[3]}/>
                     <ResultCard result={results[4]}/>
                     <ResultCard result={results[5]}/>
-                </div>
-                <div className={styles.resultsRow}>
-                    <ResultCard result={results[6]}/>
-                    <ResultCard result={results[7]}/>
-                    <ResultCard result={results[8]}/>
                 </div>
                 <div id="map" className={styles.map}></div>
                 <div>
