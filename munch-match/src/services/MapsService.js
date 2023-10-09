@@ -10,7 +10,7 @@
 //Creates the google map variable
 const google = window.google;
 
-function getResults(queryType, lat, lng) {
+function getResults(queryType, lat, lng, ratingRange) {
   //Stores the user's location as google.maps.LatLng (Latitude and Longitude)
   //Change location variables to props variables
   const userLocation = new google.maps.LatLng(lat, lng);
@@ -43,7 +43,13 @@ function getResults(queryType, lat, lng) {
             const today = new Date();
             const days = [6, 0, 1, 2, 3, 4, 5];
             const dayOfWeek = today.getDay();
-            extractedResults = detailed_results.slice(0, 6).map((place) => ({
+
+            const filteredResults = detailed_results.filter(result => {
+              const rating = result.rating;
+              return rating >= ratingRange[0] && rating <= ratingRange[1];
+            });
+
+            extractedResults = filteredResults.slice(0, 9).map((place) => ({
               // Extract the necessary information from the raw result set that we need to represent to the user
               // First we check if the corresponding data actually exist via (?), if so then extract what we need
               name: place?.name,
@@ -51,7 +57,7 @@ function getResults(queryType, lat, lng) {
               totalRatings: place?.user_ratings_total,
               formattedAddress: place?.formatted_address,
               formattedPhone: place?.formatted_phone_number,
-              price: place?.price_level,
+              price: place?.price_level ?? 1, // Set price to 1 if it's undefined
               website: place?.website,
               maps: place?.url,
               openingHours: place.opening_hours?.weekday_text[days[dayOfWeek]],

@@ -61,3 +61,8 @@ button {
   left: 0px;
   z-index: 1;
 }
+
+.range-slider {
+  width: 30% !important;
+  margin: auto;
+}
