@@ -63,3 +63,18 @@
   font-weight: bold;
   transition: background 0.6s, transform 0.5s;
 }
+
+.confetti-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 32; 
+
+}
+
+.slot-content {
+  position: absolute;
+  z-index: 2;         
+}

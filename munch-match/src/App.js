@@ -17,12 +17,7 @@ function App() {
     setSelectedType(type);
     setIsModalOpen(false); 
   };
-  const onReveal = (type) => {
-    console.log('type', type);
-    setShowResults(true);
-    setSelectedType(type);
-    setIsModalOpen(false);
-  };
+
   
 
   const onBackClick = () => {
