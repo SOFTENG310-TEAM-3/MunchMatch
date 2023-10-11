@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
+import styles from './Either.module.css';
 
-const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY; // Make sure to add your API key to a .env file
-const apiEndpoint = "https://api.spoonacular.com/recipes/random?number=1&tags=&limitLicense=true";
+const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
 
-async function fetchRandomRecipe() {
+async function fetchRandomRecipe(tag) {
+  const apiEndpoint = `https://api.spoonacular.com/recipes/random?number=1&tags=${tag}&limitLicense=true`;
   try {
     const response = await axios.get(`${apiEndpoint}&apiKey=${apiKey}`);
-    console.log("API Response: ", response); // Debugging line
     const recipe = response.data.recipes[0];
     return {
       title: recipe.title,
       image: recipe.image,
-      type: recipe.dishTypes[0], // taking first dish type, you can adjust this
+      category: tag,
     };
   } catch (error) {
     console.error('API call failed:', error);
@@ -21,66 +21,94 @@ async function fetchRandomRecipe() {
   }
 }
 
-export default function EitherComponent({ onClose }) {
-  const [option1, setOption1] = useState(null);
-  const [option2, setOption2] = useState(null);
-  const [selectedTypes, setSelectedTypes] = useState([]);
+export default function EitherScreen({ onClose }) {
+  const [options, setOptions] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [optionSelected, setOptionSelected] = useState(false);
+  const [selectedTypes, setSelectedTypes] = useState([]); // Store selected types
+
+  const fetchData = async () => {
+    const randomOptions = ['pizza', 'burger', 'chicken', 'dessert'];
+    const randomIndex1 = Math.floor(Math.random() * randomOptions.length);
+    let randomIndex2;
+
+    // Generate a different random index for the second option (make them different)
+    do {
+      randomIndex2 = Math.floor(Math.random() * randomOptions.length);
+    } while (randomIndex2 === randomIndex1);
+
+    const data1 = await fetchRandomRecipe(randomOptions[randomIndex1]);
+    const data2 = await fetchRandomRecipe(randomOptions[randomIndex2]);
+
+    setOptions([data1, data2]);
+    setSelectedCategory(null); // Reset selected category when new data is fetched
+    setOptionSelected(false); // Reset the option selected flag
+  };
+
+  const handleSelect = (category) => {
+    setSelectedCategory(category);
+    setOptionSelected(true); // Set the option selected flag to trigger fetching new data
+    setSelectedTypes([...selectedTypes, category]); // Add the selected category to the array
+    fetchData(); // Fetch new data when an option is selected
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data1 = await fetchRandomRecipe();
-      const data2 = await fetchRandomRecipe();
-
-      setOption1(data1);
-      setOption2(data2);
-    };
-
+    // Fetch initial data when the component mounts
     fetchData();
-  }, []);
+  }, []); 
 
-  const handleSelect = (type) => {
-    setSelectedTypes([...selectedTypes, type]);
-  };
+  // TODO: Generate a graph based on the user selectedCategory
+  function handleGraph() {
+    console.log("Implement graph visualization here. Current selected types:", selectedTypes);
+  }
 
   return (
     <div>
-      <h4>Find out your favorite food by choosing one of the options!</h4>
-
-      <AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+      <h3 className={styles.heading}>Find out your favorite food by choosing one of the options!</h3>
+      <div className={styles.container}>
+        <AnimatePresence>
+          {options.map((option, index) => (
+            <motion.div
+              key={`option${index + 1}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {option && (
+                <div
+                  className={`${styles.imageContainer} ${option.category === selectedCategory && styles.selectedImage}`}
+                  onClick={() => {
+                    handleSelect(option.category);
+                    console.log('Current selection:', option.category);
+                  }}
+                >
+                  <motion.img
+                    src={option.image}
+                    alt={option.title}
+                    initial={{ scale: 0.7 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                    style={{ width: '400px', height: '400px' }}
+                    className={styles.image}
+                  />
+                </div>
+              )}
+              <p className={styles.titleText}>{option?.title}</p>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+      <div className={styles['button-container']}>
+        <button className={`${styles.button} ${styles.close}`} onClick={onClose}>
+          Close
+        </button>
+        <button
+          className={`${styles.button} ${styles.graph}`}
+          onClick={handleGraph}
         >
-          {option1 && (
-            <div onClick={() => handleSelect(option1.type)}>
-              <motion.img 
-                src={option1.image} 
-                alt={option1.title} 
-                initial={{ scale: 0.7 }} 
-                animate={{ scale: 1 }} 
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                style={{ width: '300px', height: '300px' }}
-              />
-              <p>{option1.title}</p>
-            </div>
-          )}
-          {option2 && (
-            <div onClick={() => handleSelect(option2.type)}>
-              <motion.img 
-                src={option2.image} 
-                alt={option2.title} 
-                initial={{ scale: 0.7 }} 
-                animate={{ scale: 1 }} 
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                style={{ width: '300px', height: '300px' }}
-              />
-              <p>{option2.title}</p>
-            </div>
-          )}
-        </motion.div>
-      </AnimatePresence>
-      <button onClick={onClose}>Close</button>
+          Graph it! 📊
+        </button>
+      </div>
     </div>
   );
 }
