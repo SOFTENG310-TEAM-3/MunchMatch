@@ -96,6 +96,15 @@ class FoodOptionButtons extends Component {
                         </div>
                         <div>
                             <button
+                            className={styles.button}
+                            onClick={this.props.openEither}
+                            style={{ width: "55%" }}
+                            >
+                            <h2>EITHER</h2>
+                            </button>
+                        </div>
+                        <div>
+                            <button
                                 className={styles.button}
                                 onClick={this.handleQuizStart}
                                 style={{ width: "55%" }}
