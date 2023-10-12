@@ -4,13 +4,23 @@ import FoodOptionButtons from './components/foodOptionButtons';
 import Results from './components/resultsLayout';
 import fork from './images/fork.png';
 import knife from './images/knife.png';
-import Modal from './components/Modal/Modal'; // Import the Modal component
+import Modal from './components/Modal/Modal';
+import EitherScreen from './components/Either/EitherScreen';
 
 function App() {
   const [showResults, setShowResults] = useState(false);
   const [selectedType, setSelectedType] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false); // State for controlling the modal
-  
+
+  const [showEither, setShowEither] = useState(false);
+
+  const openEither = () => {
+    setShowEither(true); 
+  };
+
+  const closeEither = () => {
+    setShowEither(false);  
+  };
 
   const onButtonClick = (type) => {
     setShowResults(true);
@@ -23,6 +33,7 @@ function App() {
   const onBackClick = () => {
     setShowResults(false);
     setSelectedType('');
+    setIsModalOpen(false);
   };
 
   const closeModal = () => {
@@ -39,9 +50,13 @@ function App() {
         <img className="knife" src={knife} alt="knife"></img>
         {showResults ? (
           <Results type={selectedType} onBackClick={onBackClick} />
+        ) : showEither ? (
+          <EitherScreen onClose={closeEither} />
         ) : (
           <>
-            <FoodOptionButtons onButtonClick={onButtonClick} />
+
+            <FoodOptionButtons onButtonClick={onButtonClick} openEither={openEither} />
+            <Modal isOpen={isModalOpen} onClose={closeModal} onReveal={onButtonClick} />
           </>
         )}
         <img className="fork" src={fork} alt="fork"></img>
