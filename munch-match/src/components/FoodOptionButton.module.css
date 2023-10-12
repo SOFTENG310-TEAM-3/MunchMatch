@@ -1,0 +1,23 @@
+.button {
+    background-color: #dbdeff;
+    border: 8px solid white;
+    border-radius: 25px;
+    margin: 0.5%;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.food {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.disabled {
+    filter: grayscale(1);
+}
+
+.disabledButton {
+    background-color: darkgray;
+}

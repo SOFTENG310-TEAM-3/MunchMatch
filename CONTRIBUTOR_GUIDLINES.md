@@ -116,12 +116,20 @@ In this project, we would use Google API to provide restaurant information like 
 Code of Conduct: All contributors must follow our code of conduct. Please see detail via [Code of Conduct](CODE_OF_CONDUCT.md)
 
 ## Contact us
-| Name | Upi | Email |
-| ------- | ------- | ------- |
-|  Tanishq Ranjith  | tnai255    | tran631@aucklanduni.ac.nz    |
-|  Kyle LoweKyle  | klow358    | klow358@aucklanduni.ac.nz    |
-|  Tisha Naicker  | tnai255    | tnai255@aucklanduni.ac.nz   |
-|  James Gai  | jgai284    | jgai284@aucklanduni.ac.nz     |
-|  Manjot Mann | mman755    | mman755@aucklanduni.ac.nz     |
-| Xinhuiqiang Xu    |xxu511    | xxu511@aucklanduni.ac.nz   |
+| Name              | Upi     | Email                     |
+|-------------------|---------|---------------------------|
+| Tanishq Ranjith   | tnai255 | tran631@aucklanduni.ac.nz |
+| Kyle LoweKyle     | klow358 | klow358@aucklanduni.ac.nz |
+| Tisha Naicker     | tnai255 | tnai255@aucklanduni.ac.nz |
+| James Gai         | jgai284 | jgai284@aucklanduni.ac.nz |
+| Manjot Mann       | mman755 | mman755@aucklanduni.ac.nz |
+| Xinhuiqiang Xu    | xxu511  | xxu511@aucklanduni.ac.nz  |
+| Ben Martin        | bmar268 | bmar268@aucklanduni.ac.nz |
+| Devesh Duptala    | ddup656 | ddup656@aucklanduni.ac.nz |
+| Jackson Schofield | jsch790 | jsch790@aucklanduni.ac.nz |
+| Michael Hardy     | mhar860 | mhar860@aucklanduni.ac.nz |
+| Ariel Wang        | wany468 | wany468@aucklanduni.ac.nz |
+| Emily Zou         | yzou415 | yzou415@aucklanduni.ac.nz |
+
+
 
