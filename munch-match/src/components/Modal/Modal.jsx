@@ -9,10 +9,7 @@ const Modal = ({ isOpen, onClose, onReveal}) => {
   
   const handleButtonClick = () => {
     if (slotMachineResult) {
-      // If a category is revealed, trigger the onReveal function
-    } else {
-      // Handle the case when no category is revealed (you can display a message)
-      console.log("No category revealed");
+      onReveal(slotMachineResult);
     }
   };
 

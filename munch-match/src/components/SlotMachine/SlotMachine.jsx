@@ -41,55 +41,55 @@ const SlotMachine = ({ onReveal }) => {
     { name: 'chicken', image: chicken },
     { name: 'dessert', image: dessert },
     { name: 'fruit', image: fruit },
-      { name: 'pizza', image: pizza },
+    { name: 'pizza', image: pizza },
     { name: 'sushi', image: sushi },
   ], []);
 
 
   // Use the useEffect hook to manage playing and stopping the sound
-useEffect(() => {
-  const audio = new Audio(confettiSound);
-  if (playConfetti) {
+  useEffect(() => {
+    const audio = new Audio(confettiSound);
+    if (playConfetti) {
       audio.play();
-  } else {
+    } else {
       audio.pause();
       audio.currentTime = 0;
-  }
+    }
 
-  return () => {
+    return () => {
       audio.pause();
-  };
-}, [playConfetti]);
- // checks for a match with two or more categories
-useEffect(() => {
-  const checkForMatch = () => {
+    };
+  }, [playConfetti]);
+  // checks for a match with two or more categories
+  useEffect(() => {
+    const checkForMatch = () => {
       const foundItems = results.reduce((acc, curr) => {
-          acc[curr] = (acc[curr] || 0) + 1;
-          return acc;
+        acc[curr] = (acc[curr] || 0) + 1;
+        return acc;
       }, {});
 
       const winningImage = Object.keys(foundItems).find(key => foundItems[key] >= 2);
 
       // displays winning items and sets off confetti
       if (winningImage) {
-          const winningItem = foodItems.find(item => item.image === winningImage);
-          setWinnerCategory(winningItem ? winningItem.name : null);
-          setPlayConfetti(true);
+        const winningItem = foodItems.find(item => item.image === winningImage);
+        setWinnerCategory(winningItem ? winningItem.name : null);
+        setPlayConfetti(true);
 
-          // Set a timer to stop the confetti after a short duration (e.g., 3 seconds)
-          setTimeout(() => {
-              setPlayConfetti(false);
-          }, 3000);
-      } else {
-          setWinnerCategory(null);
+        // Set a timer to stop the confetti after a short duration (e.g., 3 seconds)
+        setTimeout(() => {
           setPlayConfetti(false);
+        }, 3000);
+      } else {
+        setWinnerCategory(null);
+        setPlayConfetti(false);
       }
-  };
+    };
 
-  if (!isSpinning && results[0]) {
+    if (!isSpinning && results[0]) {
       checkForMatch();
-  }
-}, [isSpinning, results, foodItems]);
+    }
+  }, [isSpinning, results, foodItems]);
 
 
 
@@ -130,14 +130,14 @@ useEffect(() => {
   return (
     <div className={styles['spinner-container']}>
       <Lottie
-    key={playConfetti ? 'play' : 'stop'}
-    options={confettiOptions}
-    height={'100%'}
-    width={'100%'}
-    isStopped={!playConfetti}
-    isPaused={!playConfetti}
-    className={styles['confetti-layer']}
-/>
+        key={playConfetti ? 'play' : 'stop'}
+        options={confettiOptions}
+        height={'100%'}
+        width={'100%'}
+        isStopped={!playConfetti}
+        isPaused={!playConfetti}
+        className={styles['confetti-layer']}
+      />
 
 
 
