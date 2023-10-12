@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Either.module.css';
+import { Pie } from 'react-chartjs-2';
 
 const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
 
@@ -26,6 +27,30 @@ export default function EitherScreen({ onClose }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [optionSelected, setOptionSelected] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]); // Store selected types
+  const [showGraph, setShowGraph] = useState(false);
+
+  function handleGraph() {
+    console.log("Implement graph visualization here. Current selected types:", selectedTypes);
+    setShowGraph(true);
+}
+const pieChartData = {
+  labels: [...new Set(selectedTypes)], // get unique category names
+  datasets: [
+      {
+          data: [...new Set(selectedTypes)].map(
+              (type) => selectedTypes.filter((item) => item === type).length
+          ), // count occurrences of each category
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+          ],
+      },
+  ],
+};
 
   const fetchData = async () => {
     const randomOptions = ['pizza', 'burger', 'chicken', 'dessert'];
@@ -57,58 +82,61 @@ export default function EitherScreen({ onClose }) {
     fetchData();
   }, []); 
 
-  // TODO: Generate a graph based on the user selectedCategory
-  function handleGraph() {
-    console.log("Implement graph visualization here. Current selected types:", selectedTypes);
-  }
 
   return (
     <div>
-      <h3 className={styles.heading}>Find out your favorite food by choosing one of the options!</h3>
-      <div className={styles.container}>
-        <AnimatePresence>
-          {options.map((option, index) => (
-            <motion.div
-              key={`option${index + 1}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+        <h3 className={styles.heading}>Find out your favorite food by choosing one of the options!</h3>
+        <div className={styles.container}>
+            <AnimatePresence>
+                {options.map((option, index) => (
+                    <motion.div
+                        key={`option${index + 1}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        {option && (
+                            <div
+                                className={`${styles.imageContainer} ${option.category === selectedCategory && styles.selectedImage}`}
+                                onClick={() => {
+                                    handleSelect(option.category);
+                                    console.log('Current selection:', option.category);
+                                }}
+                            >
+                                <motion.img
+                                    src={option.image}
+                                    alt={option.title}
+                                    initial={{ scale: 0.7 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                                    style={{ width: '400px', height: '400px' }}
+                                    className={styles.image}
+                                />
+                            </div>
+                        )}
+                        <p className={styles.titleText}>{option?.title}</p>
+                    </motion.div>
+                ))}
+            </AnimatePresence>
+        </div>
+        <div className={styles['button-container']}>
+            <button className={`${styles.button} ${styles.close}`} onClick={onClose}>
+                Close
+            </button>
+            <button
+                className={`${styles.button} ${styles.graph}`}
+                onClick={handleGraph}
             >
-              {option && (
-                <div
-                  className={`${styles.imageContainer} ${option.category === selectedCategory && styles.selectedImage}`}
-                  onClick={() => {
-                    handleSelect(option.category);
-                    console.log('Current selection:', option.category);
-                  }}
-                >
-                  <motion.img
-                    src={option.image}
-                    alt={option.title}
-                    initial={{ scale: 0.7 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                    style={{ width: '400px', height: '400px' }}
-                    className={styles.image}
-                  />
-                </div>
-              )}
-              <p className={styles.titleText}>{option?.title}</p>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
-      <div className={styles['button-container']}>
-        <button className={`${styles.button} ${styles.close}`} onClick={onClose}>
-          Close
-        </button>
-        <button
-          className={`${styles.button} ${styles.graph}`}
-          onClick={handleGraph}
-        >
-          Graph it! 📊
-        </button>
-      </div>
+                Graph it! 📊
+            </button>
+        </div>
+
+        {showGraph && (
+            <div className={styles.graphContainer}>
+                <Pie data={pieChartData} options={{ responsive: true }} />
+            </div>
+        )}
     </div>
-  );
+);
+
 }

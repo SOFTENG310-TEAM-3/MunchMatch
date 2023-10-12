@@ -103,7 +103,6 @@ class FoodOptionButtons extends Component {
                 </div>
                 {quizStep === "start" && (
                     <div>
-                        <button className="button" onClick={this.openModal} style={{ width: "55%" }}><h2>Surprise Me!</h2></button>
 
                         <div>
                             <button
