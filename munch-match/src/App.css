@@ -53,6 +53,8 @@ button {
   top: 0px;
   right: 0px;
   z-index: 1;
+  width: 220px;
+  height: 220px;
 }
 
 .fork {
@@ -60,6 +62,8 @@ button {
   bottom: 0px;
   left: 0px;
   z-index: 1;
+  width: 220px;
+  height: 220px;
 }
 
 .button {
@@ -98,6 +102,7 @@ button {
 .emptyStar {
   color: gray;
 }
+
 .attribution {
   position: fixed;
   bottom: 0px;
