@@ -3,7 +3,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 10px;
+    margin-bottom: 40px;
+    gap: 10px;
+}
+
+.restaurantImage {
+    width: 50%;
+    height: auto;
+    border-radius: 15px;
 }
 
 .detailsText {
@@ -18,7 +25,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px;
     padding: 0 10px;
     background-color: white;
     border: 2px solid black;
@@ -27,11 +33,14 @@
 }
 
 .linkContainer {
+    margin-bottom: 40px;
+}
+
+.copyLink {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding-bottom: 30px;
 }
 
 .linkField {
@@ -42,6 +51,6 @@
 .shareButtonsContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin: 20px;
+    justify-content: space-around;
+    margin-bottom: 40px;
 }

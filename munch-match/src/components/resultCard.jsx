@@ -63,7 +63,7 @@ const ResultCard = ({ result }) => {
                 </div>)}
 
             <ShareModal isOpen={isShareModalOpen} onClose={closeShareModal}>
-                <ShareModalContent />
+                <ShareModalContent imageUrl={result?.picture?.getUrl()} name={result?.name} address={result?.formattedAddress} shareUrl={result?.maps} />
             </ShareModal>
         </div>
     )
