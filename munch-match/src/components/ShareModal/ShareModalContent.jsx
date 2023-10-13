@@ -18,7 +18,10 @@ const ShareModalContent = ({ imageUrl, name, address, shareUrl }) => {
     };
 
     const handleShareFacebook = () => {
-
+        if (shareUrl) {
+            const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+            window.open(facebookShareUrl, '_blank', 'width=600,height=400');
+        }
     };
 
     const handleShareTwitter = () => {
@@ -55,9 +58,9 @@ const ShareModalContent = ({ imageUrl, name, address, shareUrl }) => {
                 </div>
             </div>
             <div className={styles.shareButtonsContainer}>
-                <ShareButton icon={faFacebook} buttonText="Facebook" />
-                <ShareButton icon={faTwitter} buttonText="Twitter" />
-                <ShareButton icon={faGoogle} buttonText="Gmail" />
+                <ShareButton icon={faFacebook} buttonText="Facebook" shareHandler={handleShareFacebook} />
+                <ShareButton icon={faTwitter} buttonText="Twitter" shareHandler={handleShareTwitter} />
+                <ShareButton icon={faGoogle} buttonText="Gmail" shareHandler={handleShareEmail} />
             </div>
         </>
     );
