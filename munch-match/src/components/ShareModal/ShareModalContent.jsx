@@ -26,13 +26,19 @@ const ShareModalContent = ({ imageUrl, name, address, shareUrl }) => {
 
     const handleShareTwitter = () => {
         if (shareUrl) {
-            const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`;
+            const shareText = "Let's grab food! Discovered using MunchMatch.";
+            const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
             window.open(twitterShareUrl, '_blank', 'width=600,height=400');
         }
     };
 
     const handleShareEmail = () => {
-
+        if (shareUrl) {
+            const subject = "Let's get food!"
+            const body = `Discovered using MunchMatch: ${shareUrl}`
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+        }
     };
 
     return (
