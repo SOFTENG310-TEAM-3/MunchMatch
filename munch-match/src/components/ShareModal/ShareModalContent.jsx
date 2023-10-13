@@ -1,4 +1,5 @@
-import { faFacebook, faTwitter, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import styles from "./ShareModalContent.module.css";
 import ShareButton from "./ShareButton";
 
@@ -69,7 +70,7 @@ const ShareModalContent = ({ imageUrl, name, address, shareUrl }) => {
             <div className={styles.shareButtonsContainer}>
                 <ShareButton icon={faFacebook} buttonText="Facebook" shareHandler={handleShareFacebook} />
                 <ShareButton icon={faTwitter} buttonText="Twitter" shareHandler={handleShareTwitter} />
-                <ShareButton icon={faGoogle} buttonText="Gmail" shareHandler={handleShareEmail} />
+                <ShareButton icon={faEnvelope} buttonText="Email" shareHandler={handleShareEmail} />
             </div>
         </>
     );
