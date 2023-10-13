@@ -1,5 +1,6 @@
 import Rating from "./rating";
 import ShareModal from "./ShareModal/ShareModal";
+import ShareModalContent from "./ShareModal/ShareModalContent";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import styles from "./resultCard.module.css"
@@ -61,10 +62,9 @@ const ResultCard = ({ result }) => {
                     <img className={styles.resultImage} src={result?.picture?.getUrl()} alt="picture of restaurant"></img>
                 </div>)}
 
-            <ShareModal
-                isOpen={isShareModalOpen}
-                onClose={closeShareModal}
-            />
+            <ShareModal isOpen={isShareModalOpen} onClose={closeShareModal}>
+                <ShareModalContent imageUrl={result?.picture?.getUrl()} name={result?.name} address={result?.formattedAddress} shareUrl={result?.maps} />
+            </ShareModal>
         </div>
     )
 
