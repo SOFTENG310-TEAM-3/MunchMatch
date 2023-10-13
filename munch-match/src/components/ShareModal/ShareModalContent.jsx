@@ -25,7 +25,10 @@ const ShareModalContent = ({ imageUrl, name, address, shareUrl }) => {
     };
 
     const handleShareTwitter = () => {
-
+        if (shareUrl) {
+            const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`;
+            window.open(twitterShareUrl, '_blank', 'width=600,height=400');
+        }
     };
 
     const handleShareEmail = () => {
