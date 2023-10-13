@@ -4,13 +4,11 @@ import ShareButton from "./ShareButton";
 
 const ShareModalContent = ({ imageUrl, name, address, shareUrl }) => {
     const handleCopyLink = () => {
-        const linkField = document.querySelector(`.${styles.linkField}`);
-
-        if (linkField) {
-            navigator.clipboard.writeText(linkField.value)
+        if (shareUrl) {
+            navigator.clipboard.writeText(shareUrl)
                 .then(() => {
                     // Text successfully copied to clipboard
-                    console.log('Link copied to clipboard:', linkField.value);
+                    console.log('Link copied to clipboard:', shareUrl);
                 })
                 .catch(err => {
                     // Handle errors
