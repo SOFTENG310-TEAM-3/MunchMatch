@@ -63,32 +63,18 @@
   font-weight: bold;
   transition: background 0.6s, transform 0.5s;
 }
-/* 
-.searchButton:hover {
-  background: rgb(191, 245, 150) !important;
-  box-shadow: 0px 15px 20px rgba(0,0,0,0.3);
-  transform: translateY(-7px);
-} */
 
-.spinAgain {
-  color: red;
-  font-size: 34px;
-  font-weight: bold;
-  margin-bottom: 2.5rem; 
+.confetti-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 32; 
+
 }
 
-.icons img {
-  animation: moveImage 1s ease infinite;
-}
-
-@keyframes moveImage {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(5px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+.slot-content {
+  position: absolute;
+  z-index: 2;         
 }

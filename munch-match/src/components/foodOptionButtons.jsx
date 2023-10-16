@@ -12,6 +12,7 @@ class FoodOptionButtons extends Component {
     constructor(props) {
         super(props);
         this.state = {
+
             isModalOpen: false,  // State to control modal visibility
             quizStep: "start", // Initial quiz step
             currentQuestionId: 0,
@@ -24,10 +25,26 @@ class FoodOptionButtons extends Component {
         this.setState({ isModalOpen: true });
     };
 
+    onReveal = (type) => {
+        console.log('type', type);
+        this.props.onButtonClick(type);
+      };
+
+
     // close spinner modal
     closeModal = () => {
         this.setState({ isModalOpen: false });
     };
+
+    handleClick = (type) => {
+        //generate a random type from the food choice array
+        if (type === "random") {
+            const randomNumber = Math.floor(Math.random() * foodChoices.length);
+            type = foodChoices[randomNumber];
+        }
+        this.props.onButtonClick(type);
+    }
+
 
     handleClick = (type) => {
         //generate a random type from the food choice array
@@ -76,6 +93,7 @@ class FoodOptionButtons extends Component {
             //To export multiple components, surround it with a <div> tag
             <div>
                 <div className={styles.buttonsContainer}>
+
                     {foodChoices.map((choice, index) => {
                         const isDisabled = disabledOptions.includes(choice);
 
@@ -85,6 +103,7 @@ class FoodOptionButtons extends Component {
                 </div>
                 {quizStep === "start" && (
                     <div>
+
                         <div>
                             <button
                                 className={styles.button}
@@ -92,6 +111,15 @@ class FoodOptionButtons extends Component {
                                 style={{ width: "55%" }}
                             >
                                 <h2>Surprise Me!</h2>
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                            className={styles.button}
+                            onClick={this.props.openEither}
+                            style={{ width: "55%" }}
+                            >
+                            <h2>EITHER</h2>
                             </button>
                         </div>
                         <div>
@@ -108,6 +136,7 @@ class FoodOptionButtons extends Component {
 
                 {quizStep === `question${currentQuestionId}` && (
                     <div>
+
                         <h3>{currentQuestion.question}</h3>
                         {currentQuestion.options.map((option, index) => (
                             <button
@@ -141,6 +170,7 @@ class FoodOptionButtons extends Component {
                 <Modal
                     isOpen={this.state.isModalOpen}
                     onClose={this.closeModal}
+                    onReveal={this.onReveal}
                 />
             </div>
 
