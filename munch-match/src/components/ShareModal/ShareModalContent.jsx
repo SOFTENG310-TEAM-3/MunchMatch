@@ -1,4 +1,5 @@
-import { faFacebook, faTwitter, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import styles from "./ShareModalContent.module.css";
 import ShareButton from "./ShareButton";
 
@@ -18,15 +19,27 @@ const ShareModalContent = ({ imageUrl, name, address, shareUrl }) => {
     };
 
     const handleShareFacebook = () => {
-
+        if (shareUrl) {
+            const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+            window.open(facebookShareUrl, '_blank', 'width=600,height=400');
+        }
     };
 
     const handleShareTwitter = () => {
-
+        if (shareUrl) {
+            const shareText = "Let's grab food! Discovered using MunchMatch.";
+            const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
+            window.open(twitterShareUrl, '_blank', 'width=600,height=400');
+        }
     };
 
     const handleShareEmail = () => {
-
+        if (shareUrl) {
+            const subject = "Let's get food!"
+            const body = `Discovered using MunchMatch: ${shareUrl}`
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+        }
     };
 
     return (
@@ -55,9 +68,9 @@ const ShareModalContent = ({ imageUrl, name, address, shareUrl }) => {
                 </div>
             </div>
             <div className={styles.shareButtonsContainer}>
-                <ShareButton icon={faFacebook} buttonText="Facebook" />
-                <ShareButton icon={faTwitter} buttonText="Twitter" />
-                <ShareButton icon={faGoogle} buttonText="Gmail" />
+                <ShareButton icon={faFacebook} buttonText="Facebook" shareHandler={handleShareFacebook} />
+                <ShareButton icon={faTwitter} buttonText="Twitter" shareHandler={handleShareTwitter} />
+                <ShareButton icon={faEnvelope} buttonText="Email" shareHandler={handleShareEmail} />
             </div>
         </>
     );
