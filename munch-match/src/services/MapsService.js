@@ -10,6 +10,11 @@
 const google = window.google;
 
 function getResults(queryType, lat, lng, ratingRange, priceRanges) {
+    // Validate the inputs
+    if (!queryType || !lat || !lng || !ratingRange || !priceRanges) {
+        throw new Error('All input parameters must be provided.');
+    }
+
     //Stores the user's location as google.maps.LatLng (Latitude and Longitude)
     //Change location variables to props variables
     const userLocation = new google.maps.LatLng(lat, lng);
@@ -38,16 +43,17 @@ function getResults(queryType, lat, lng, ratingRange, priceRanges) {
                     try {
                         let detailed_results = await fetchAllDetails(results, [], service);
                         // Code to run after fetchAllDetails has completed
-                        console.log("All details fetched and processed.");
                         const today = new Date();
                         const days = [6, 0, 1, 2, 3, 4, 5];
                         const dayOfWeek = today.getDay();
 
+                        // Filter the results by the specified rating range (Default is 0 -> 5)
                         const ratingFilteredResults = detailed_results.filter(result => {
                             const rating = result.rating;
                             return rating >= ratingRange[0] && rating <= ratingRange[1];
                         });
 
+                        // Filter the results by the specified price ranges (Default is to include all of them)
                         const priceFilteredResults = ratingFilteredResults.filter(result => {
                             const price = result?.price_level ?? 1;
                             const priceString = price.toString();
@@ -70,8 +76,6 @@ function getResults(queryType, lat, lng, ratingRange, priceRanges) {
                             latitude: place?.geometry?.location.lat(),
                             longitude: place?.geometry?.location.lng(),
                         }));
-                        // Some information logging and error handling
-                        console.log(extractedResults);
                         resolve(extractedResults);
                     } catch (error) {
                         console.error("something wrong with fetch" + error);
@@ -99,8 +103,6 @@ async function fetchAllDetails(results, detailed_results, service) {
             fetchDetails(result.place_id, service)
         );
         const detailedResponses = await Promise.all(detailPromises);
-        console.log(detailedResponses);
-        console.log(detailed_results.length);
         return detailedResponses;
     } catch (error) {
         console.error(error);

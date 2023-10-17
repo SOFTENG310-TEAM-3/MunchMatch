@@ -28,11 +28,15 @@ class Results extends Component {
     };
 
     componentDidMount() {
-        // Obtain user location when results are requested 
+        this.refreshData();
+    }
+
+    refreshData() {
+        // Obtain user location when results are requested
         this.fetchUserLocation().then((position) => {
             this.fetchResults(position.coords.latitude, position.coords.longitude);
         }).catch((err) => {
-            console.log("Error in retrieving user location")
+            this.setState({ error: 'Error in retrieving user location.' });
         });
     }
 
@@ -87,14 +91,12 @@ class Results extends Component {
 
     updateRating = (range) => {
         this.setState({ratingRange: range});
-        this.componentDidMount();
+        this.refreshData();
     }
 
     updatePriceRange = (price) => {
-        const newPriceRanges = { ...this.state.priceRanges };
-        newPriceRanges[price] = !newPriceRanges[price];
-        this.setState({ priceRanges: newPriceRanges });
-        this.componentDidMount();
+        this.setState(prevState => ({priceRanges: {...prevState.priceRanges, [price]: !prevState.priceRanges[price]}}));
+        this.refreshData();
     }
 
     render() {
@@ -109,7 +111,7 @@ class Results extends Component {
                 <p>{ratingRange[0]} - {ratingRange[1]} stars</p>
 
                 <h3>Price Range</h3>
-                <div style={{display: "inline-flex"}}>
+                <div className={styles.priceContainer}>
                     <div className={styles.priceCheckBoxes}>
                         <input
                             type="checkbox"

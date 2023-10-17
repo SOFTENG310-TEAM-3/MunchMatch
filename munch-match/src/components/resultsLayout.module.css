@@ -35,3 +35,7 @@
     margin-left: 20px;
     margin-right: 20px;
 }
+
+.priceContainer {
+    display: inline-flex;
+}
