@@ -28,23 +28,13 @@ class FoodOptionButtons extends Component {
     onReveal = (type) => {
         console.log('type', type);
         this.props.onButtonClick(type);
-      };
+    };
 
 
     // close spinner modal
     closeModal = () => {
         this.setState({ isModalOpen: false });
     };
-
-    handleClick = (type) => {
-        //generate a random type from the food choice array
-        if (type === "random") {
-            const randomNumber = Math.floor(Math.random() * foodChoices.length);
-            type = foodChoices[randomNumber];
-        }
-        this.props.onButtonClick(type);
-    }
-
 
     handleClick = (type) => {
         //generate a random type from the food choice array
@@ -115,11 +105,11 @@ class FoodOptionButtons extends Component {
                         </div>
                         <div>
                             <button
-                            className={styles.button}
-                            onClick={this.props.openEither}
-                            style={{ width: "55%" }}
+                                className={styles.button}
+                                onClick={this.props.openEither}
+                                style={{ width: "55%" }}
                             >
-                            <h2>EITHER</h2>
+                                <h2>EITHER</h2>
                             </button>
                         </div>
                         <div>

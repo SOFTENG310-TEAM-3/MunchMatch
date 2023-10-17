@@ -100,7 +100,7 @@ const SlotMachine = ({ onReveal }) => {
 
     const numPoints = 500;
     const yPoints = Array.from({ length: numPoints }, (_, i) => {
-      return Math.sin((i / numPoints) * (2 * Math.PI)) * 50;
+      return Math.sin((i / numPoints) * (2 * Math.PI)) * 40;
     });
 
     controls.start({
@@ -156,21 +156,25 @@ const SlotMachine = ({ onReveal }) => {
         ) : (!isSpinning && hasSpunOnce) ? (
           <div className={styles.searchButton}>Spin again!</div>
         ) : null}
-        <button
-          className={`${styles['spin-button']} ${isSpinning ? styles['spinning'] : ''}`}
-          onClick={handleSpin}
-          disabled={isSpinning}
-        >
-          {isSpinning ? 'Spinning...' : 'Spin'}
-        </button>
-        {winnerCategory && (
+        <div>
           <button
-            className={styles['spin-button']}
-            onClick={() => onReveal(winnerCategory)}
+              className={`${styles['spin-button']} ${isSpinning ? styles['spinning'] : ''}`}
+              onClick={handleSpin}
+              disabled={isSpinning}
           >
-            Take me there
+            {isSpinning ? 'Spinning...' : 'Spin'}
           </button>
-        )}
+        </div>
+        <div>
+          {winnerCategory && (
+              <button
+                  className={styles['spin-button']}
+                  onClick={() => onReveal(winnerCategory)}
+              >
+                Take me there
+              </button>
+          )}
+        </div>
       </div>
     </div>
   );
