@@ -31,8 +31,16 @@ To obtain the Google API Key create an google developer account and enable the M
 
 To use the Google API key in the app create an .env file in the munch-match folder and name it ```REACT_APP_GOOGLE_API_KEY``` so it would look like ```REACT_APP_GOOGLE_API_KEY = API_KEY_HERE```
 
+To obtain the Spoonacular API key, create a free account at https://spoonacular.com/food-api. Once you have created an account, you should be able to find your key in your dashboard.
+
+Once you have the key, copy it into the .env file so it looks like this ```REACT_APP_SPOONACULAR_API_KEY = API_KEY_HERE```
+
 # Available versions
-A1 provides the basic functions including selecting preferred or random food options, listing restaurant details obtained from Google Maps, and linking to Google Maps. In future versions (A2/A3), some new features such as sharing particular restaurants with friends could be added.
+A1 provides the basic functions including selecting preferred or random food options, listing restaurant details obtained from Google Maps, and linking to Google Maps.
+
+A2 provides some added functionality to help the user determine which food they would like, through visualising the randomisation and including a short quiz.
+
+A3 is a more fine tuned version of the app. It provides new features such as a this or that game, filters for the restaurants, and the ability to share restaurants to social medias. Along with these, existing features have been polished and improved.
 
 # Where can I get more help?
 Here are some emails that you can contact us with:<br/>
