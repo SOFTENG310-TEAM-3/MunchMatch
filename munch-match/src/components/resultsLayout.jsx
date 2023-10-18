@@ -1,105 +1,159 @@
 //Tells react that this is an component
-import { Component } from "react";
+import {Component} from "react";
 import "../App.css"
 import ResultCard from "./resultCard"
-import { getResults } from "../services/MapsService.js"
+import {getResults} from "../services/MapsService.js"
 import styles from "./resultsLayout.module.css"
+import RangeSlider from 'react-range-slider-input';
+import 'react-range-slider-input/dist/style.css';
 
 //Creates the google map variable
-const google = window.google; 
+const google = window.google;
 
 //Creates the Button component
-class Results extends Component{
+class Results extends Component {
 
     state = {
         results: [],
-      };
-    
-      onBackClick = () => {
+        ratingRange: [0, 5],
+        priceRanges: {
+            1: true,
+            2: true,
+            3: true,
+        },
+    };
+
+    onBackClick = () => {
         this.props.onBackClick();
-      };
-    
-      componentDidMount() {
-        // Obtain user location when results are requested 
+    };
+
+    componentDidMount() {
+        this.refreshData();
+    }
+
+    refreshData() {
+        // Obtain user location when results are requested
         this.fetchUserLocation().then((position) => {
-          this.fetchResults(position.coords.latitude, position.coords.longitude);
+            this.fetchResults(position.coords.latitude, position.coords.longitude);
         }).catch((err) => {
-          console.log("Error in retrieving user location")
-        }); 
-      }
-
-      // Function to fetch user location using geolocation 
-      fetchUserLocation() {
-        return new Promise((resolve, reject) => {
-          if (!navigator.geolocation) {
-            reject(new Error("Location is not supported"))
-          } else {
-            navigator.geolocation.getCurrentPosition(resolve, reject)
-          }
+            this.setState({ error: 'Error in retrieving user location.' });
         });
-      }
-    
+    }
 
-      // Call our api with the users coordinates and set results
-      fetchResults = (latitude, longitude) => {
-        getResults(this.props.type, latitude, longitude)
-          .then(results => {
-            // Make sure the results are sorted by rating 
-            const sortedResults = results.sort((r1, r2) => r2.rating - r1.rating);
-            this.setState({ results: sortedResults });
-            // Get the coordinates of the restaurants and initialize our embedded map
-            const locations = results.map(result => {
-              return {
-                latitude: result.latitude, 
-                longitude: result.longitude
-              };
+    // Function to fetch user location using geolocation
+    fetchUserLocation() {
+        return new Promise((resolve, reject) => {
+            if (!navigator.geolocation) {
+                reject(new Error("Location is not supported"))
+            } else {
+                navigator.geolocation.getCurrentPosition(resolve, reject)
+            }
+        });
+    }
+
+
+    // Call our api with the users coordinates and set results
+    fetchResults = (latitude, longitude) => {
+        getResults(this.props.type, latitude, longitude, this.state.ratingRange, this.state.priceRanges)
+            .then(results => {
+                // Make sure the results are sorted by rating
+                const sortedResults = results.sort((r1, r2) => r2.rating - r1.rating);
+                this.setState({results: sortedResults});
+                // Get the coordinates of the restaurants and initialize our embedded map
+                const locations = results.map(result => {
+                    return {
+                        latitude: result.latitude,
+                        longitude: result.longitude
+                    };
+                });
+                this.initializeMap(locations);
+            })
+            .catch(error => {
+                console.error('Error fetching results:', error);
             });
-            this.initializeMap(locations); 
-          })
-          .catch(error => {
-            console.error('Error fetching results:', error);
-          });
-      }
-      // Function to initialize embedded map
-      initializeMap = (foodLocations) => {
+    }
+    // Function to initialize embedded map
+    initializeMap = (foodLocations) => {
         const center = {lat: foodLocations[0].latitude, lng: foodLocations[0].longitude}
         const map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13, 
-          center: center
+            zoom: 13,
+            center: center
         });
 
         // Loop through each location and extract its coordinates and make a new marker on the map
         foodLocations.forEach(location => {
             new google.maps.Marker({
-            position: {lat: location.latitude, lng: location.longitude}, 
-            map: map
-          })
+                position: {lat: location.latitude, lng: location.longitude},
+                map: map
+            })
         })
-      }
+    }
 
-    render(){
-        console.log(this.selectedType)
-        const { results } = this.state;
-        console.log(results[2]);
+    updateRating = (range) => {
+        this.setState({ratingRange: range});
+        this.refreshData();
+    }
 
-        return(
-        //To export multiple components, surround it with a <div> tag
-        <div className={styles.resultsContainer}>
-            <div className={styles.resultsRow}>
-                <ResultCard result={results[0]}/>
-                <ResultCard result={results[1]}/>
-                <ResultCard result={results[2]}/>
+    updatePriceRange = (price) => {
+        this.setState(prevState => ({priceRanges: {...prevState.priceRanges, [price]: !prevState.priceRanges[price]}}));
+        this.refreshData();
+    }
+
+    render() {
+        const {results, ratingRange} = this.state;
+
+        return (
+            //To export multiple components, surround it with a <div> tag
+            <div className={styles.resultsContainer}>
+                <h3>Rating Range</h3>
+                <RangeSlider min={0} max={5} defaultValue={[0, 5]} step={0.1}
+                             onInput={(range) => this.updateRating(range)}/>
+                <p>{ratingRange[0]} - {ratingRange[1]} stars</p>
+
+                <h3>Price Range</h3>
+                <div className={styles.priceContainer}>
+                    <div className={styles.priceCheckBoxes}>
+                        <input
+                            type="checkbox"
+                            checked={this.state.priceRanges["1"]}
+                            onChange={() => this.updatePriceRange("1")}
+                        />
+                        <label>$</label>
+                    </div>
+                    <div className={styles.priceCheckBoxes}>
+                        <input
+                            type="checkbox"
+                            checked={this.state.priceRanges["2"]}
+                            onChange={() => this.updatePriceRange("2")}
+                        />
+                        <label>$$</label>
+                    </div>
+                    <div className={styles.priceCheckBoxes}>
+                        <input
+                            type="checkbox"
+                            checked={this.state.priceRanges["3"]}
+                            onChange={() => this.updatePriceRange("3")}
+                        />
+                        <label>$$$</label>
+                    </div>
+                </div>
+
+                <div className={styles.resultsRow}>
+                    <ResultCard result={results[0]}/>
+                    <ResultCard result={results[1]}/>
+                    <ResultCard result={results[2]}/>
+                </div>
+                <div className={styles.resultsRow}>
+                    <ResultCard result={results[3]}/>
+                    <ResultCard result={results[4]}/>
+                    <ResultCard result={results[5]}/>
+                </div>
+                <div id="map" className={styles.map}></div>
+                <div>
+                    <button className={styles.buttonResultLayout} onClick={() => this.onBackClick()}
+                            style={{width: "30%"}}><h3>Choose Again</h3></button>
+                </div>
             </div>
-            <div className={styles.resultsRow}>
-                <ResultCard result={results[3]}/>
-                <ResultCard result={results[4]}/>
-                <ResultCard result={results[5]}/>
-            </div>
-            <div id="map" className={styles.map}></div>
-            <div>
-            <button className={styles.buttonResultLayout} onClick={() => this.onBackClick()} style={{width: "30%"}}><h3>Choose Again</h3></button>
-            </div>
-        </div>  
         );
     }
 }

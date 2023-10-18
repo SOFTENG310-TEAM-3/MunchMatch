@@ -65,3 +65,8 @@ button {
   width: 220px;
   height: 220px;
 }
+
+.range-slider {
+  width: 30% !important;
+  margin: auto;
+}

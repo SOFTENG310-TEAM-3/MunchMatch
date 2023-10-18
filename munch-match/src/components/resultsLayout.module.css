@@ -29,3 +29,13 @@
     margin: 0.5%;
     z-index: 2;
 }
+
+.priceCheckBoxes {
+    display: grid;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.priceContainer {
+    display: inline-flex;
+}
