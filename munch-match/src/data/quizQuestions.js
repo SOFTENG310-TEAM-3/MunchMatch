@@ -61,6 +61,7 @@ const quizQuestions = [
         options: [
             {
                 answer: "No",
+                disables: [],
             },
             {
                 answer: "Yes",
