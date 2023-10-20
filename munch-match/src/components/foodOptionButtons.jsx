@@ -109,7 +109,7 @@ class FoodOptionButtons extends Component {
                                 onClick={this.props.openEither}
                                 style={{ width: "55%" }}
                             >
-                                <h2>EITHER</h2>
+                                <h2>This or That</h2>
                             </button>
                         </div>
                         <div>
